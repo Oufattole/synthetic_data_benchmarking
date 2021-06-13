@@ -26,6 +26,6 @@ class TestBenchmark(unittest.TestCase):
             generator_path = pl.Path("generators/" + name)
             self.assertTrue(generator_path.is_file())
             
-    def 
+    # def 
 if __name__ == '__main__':
     unittest.main()
