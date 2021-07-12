@@ -139,7 +139,7 @@ def create_tasks(train_dataset="data/train.csv",
         pycaret_models (list):
            list of strings of pycaret classification models to use, if None runs all.
         sampling_method (str):
-            "uniform" , "original", or "all" (for both uniform and original)
+            "uniform" , "original", "baseline", or "all" (for both uniform and original)
         run_num (int):
             the number of times to generate a sample and test a classifier on it.
         output_dir (str):
@@ -153,6 +153,8 @@ def create_tasks(train_dataset="data/train.csv",
     task_num = 0
     tasks = []
 
+    sampling_methods = 
+
     if pycaret_models is None:
         train_data = pd.read_csv(train_dataset)
         test_data = pd.read_csv(test_dataset)
@@ -163,25 +165,32 @@ def create_tasks(train_dataset="data/train.csv",
             verbose=False)
         pycaret_models = models().index.to_list()
 
-    generators = []
+    generator_paths = []
+    generator_name = {}
     for f in os.listdir(path_to_generators):
-        _, file_type = os.path.splitext(f)
+        file_name, file_type = os.path.splitext(f)
         if file_type == '.pkl':
-            generators.append(f)
+            generator_path = os.path.join(path_to_generators, f)
+            generator_name[generator_path] = file_name
+            generator_paths.append(generator_path)
 
     for classifier in pycaret_models:
-        for generator in generators:
-            task_id = "{}_{}_{}".format(task_num, generator, classifier)
+        for generator_path in generator_paths:
+            for s_m in sampling_methods
+            task_id = "{}_{}_{}".format(task_num, generator_name[generator_path], classifier)
             task = Task(task_id=task_id, train_dataset=train_dataset,
                         test_dataset=test_dataset, target=target,
-                        path_to_generator=generator, sampling_method=sampling_method, 
+                        path_to_generator=generator_path, sampling_method=sampling_method, 
                         pycaret_model=classifier, run_num=run_num)
             tasks.append(task)
             task_num += 1
 
     if output_dir is not None:
-        if not os.path.exists(output_dir):
-            os.mkdir(output_dir)
+        if os.path.exists(output_dir):
+            #automatically clears output directory
+            shutil.rmtree(output_dir) 
+        os.mkdir(output_dir)
+
         for task in tasks:
             task_path = os.path.join(output_dir, task.task_id)
             if os.path.exists(task_path):

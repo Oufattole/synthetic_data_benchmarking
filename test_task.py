@@ -48,12 +48,14 @@ class TestTask(unittest.TestCase):
         tasks = task.create_tasks(train_dataset="data/train.csv",
                     test_dataset="data/test.csv", target="Attrition",
                     path_to_generators = path_to_generators, pycaret_models=None,
-                    sampling_methods="all", run_num=1, output_dir=output_dir)
+                    sampling_method="all", run_num=1, output_dir=output_dir)
         
         files = os.listdir(output_dir) # dir is your directory path
         file_count = len(files)
         self.assertEqual(file_count, len(tasks))
-
+        generator_paths = ["generators/default_gaussain_copula.pkl", "generators/default_tvae.pkl"]
+        for each in tasks:
+            self.assertIn(each.path_to_generator, generator_paths)
         shutil.rmtree(output_dir) 
         os.mkdir(output_dir)       
         
