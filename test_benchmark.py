@@ -51,22 +51,6 @@ class TestBenchmark(unittest.TestCase):
         self.assertEqual({'No': 2, 'Yes': 2},support)
         self.assertEqual(auc, .5)
 
-
-    def test_sampling_method_original(self):
-        output_dir = "tasks"
-        path_to_generators = "generators/"
-        tasks = task.create_tasks(train_dataset="data/train.csv",
-                    test_dataset="data/test.csv", target="Attrition",
-                    path_to_generators = path_to_generators, pycaret_models=None,
-                    sampling_method="original", run_num=1, output_dir=output_dir)
-        test_task = tasks[0]
-        evaluator = benchmark.Task_Evaluator(test_task)
-        results = evaluator.evaluate_task()
-        sampling_methods = [each[3] for each in results]
-        self.assertEqual(sampling_methods, ['Baseline', 'Original 30/60', 'Original 60/60'])
-    def test_evaluate_task(self):
-        pass
-
     def test_benchmark(self):
         pass
 

@@ -1,1 +1,1 @@
-{"_task_id": "30_default_tvae_xgboost", "_train_dataset": "data/train.csv", "_test_dataset": "data/test.csv", "_target": "Attrition", "_path_to_generator": "generators/default_tvae.pkl", "_sampling_method": "original", "_pycaret_model": "xgboost", "_run_num": 1}
+{"_task_id": "30_default_tvae_xgboost", "_train_dataset": "data/train.csv", "_test_dataset": "data/test.csv", "_target": "Attrition", "_path_to_generator": "generators/default_tvae.pkl", "_sampling_method_id": "baseline", "_pycaret_model": "xgboost", "_run_num": 1}

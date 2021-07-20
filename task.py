@@ -4,13 +4,14 @@ import pickle
 import shutil
 from pycaret.classification import * # Preprocessing, modelling, interpretation, deployment...
 import pandas as pd
+from sampler import Sampler
 
 class Task:
     """A class that stores the configurations to a prediction task."""
 
     def __init__(self, task_id=None, train_dataset=None,
                  test_dataset=None, target=None, path_to_generator=None,
-                 sampling_method=None, pycaret_model=None, run_num=None):
+                 sampling_method_id=None, pycaret_model=None, run_num=None):
         """Create a task configuration object from a list of settings.
         Args:
             task_id (str):
@@ -23,8 +24,8 @@ class Task:
                 the name of the target column in train_dataset and test_dataset
             path_to_generator (str)
                 the path where the generator is stored
-            sampling_method (str):
-                "uniform" , "original", or "all" (for both uniform and original)
+            sampling_method_id (str):
+                unique sampling method id
             pycaret_model (str):
                 the pycaret classifier ID, this classifier will be trained and tested
             run_num (int):
@@ -35,7 +36,7 @@ class Task:
         self._test_dataset = test_dataset
         self._target = target
         self._path_to_generator = path_to_generator
-        self._sampling_method = sampling_method
+        self._sampling_method_id = sampling_method_id
         self._pycaret_model = pycaret_model
         self._run_num = run_num
 
@@ -108,8 +109,8 @@ class Task:
         self._path_to_generator = path_to_generator
     
     @property
-    def sampling_method(self):
-        return self._sampling_method
+    def sampling_method_id(self):
+        return self._sampling_method_id
 
     @property
     def pycaret_model(self):
@@ -123,7 +124,7 @@ class Task:
 def create_tasks(train_dataset="data/train.csv",
                 test_dataset="data/test.csv", target="TARGET",
                 path_to_generators = "generators/", pycaret_models=None,
-                sampling_method="all", run_num=1, output_dir=None):
+                task_sampling_method="all", run_num=1, output_dir=None):
     """Create a list of benchmark task objects.
     
     Args:
@@ -153,8 +154,6 @@ def create_tasks(train_dataset="data/train.csv",
     task_num = 0
     tasks = []
 
-    sampling_methods = 
-
     if pycaret_models is None:
         train_data = pd.read_csv(train_dataset)
         test_data = pd.read_csv(test_dataset)
@@ -176,14 +175,14 @@ def create_tasks(train_dataset="data/train.csv",
 
     for classifier in pycaret_models:
         for generator_path in generator_paths:
-            for s_m in sampling_methods
-            task_id = "{}_{}_{}".format(task_num, generator_name[generator_path], classifier)
-            task = Task(task_id=task_id, train_dataset=train_dataset,
-                        test_dataset=test_dataset, target=target,
-                        path_to_generator=generator_path, sampling_method=sampling_method, 
-                        pycaret_model=classifier, run_num=run_num)
-            tasks.append(task)
-            task_num += 1
+            for sampling_method_id in Sampler.get_sample_method_ids(task_sampling_method):
+                task_id = "{}_{}_{}".format(task_num, generator_name[generator_path], classifier)
+                task = Task(task_id=task_id, train_dataset=train_dataset,
+                            test_dataset=test_dataset, target=target,
+                            path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
+                            pycaret_model=classifier, run_num=run_num)
+                tasks.append(task)
+                task_num += 1
 
     if output_dir is not None:
         if os.path.exists(output_dir):

@@ -48,7 +48,7 @@ class TestTask(unittest.TestCase):
         tasks = task.create_tasks(train_dataset="data/train.csv",
                     test_dataset="data/test.csv", target="Attrition",
                     path_to_generators = path_to_generators, pycaret_models=None,
-                    sampling_method="all", run_num=1, output_dir=output_dir)
+                    task_sampling_method="all", run_num=1, output_dir=output_dir)
         
         files = os.listdir(output_dir) # dir is your directory path
         file_count = len(files)
