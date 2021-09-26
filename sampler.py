@@ -31,12 +31,17 @@ class Sampler():
             sampling_method_info = self._sample_baseline()
         else:
             raise ValueError("for task id {} task.sampling_method_id is {} which is invalid".format(task.task_id, task.sampling_method))
-        self._store_data(synthetic_data)
+        synthetic_data_created = (not synthetic_data is None) and synthetic_data.size
+        if self.task.output_dir and synthetic_data_created:
+            self._store_data(synthetic_data)
         combined_data = pd.concat([self.train_data, synthetic_data])
         return combined_data, sampling_method_info, score_aggregate
 
     def _store_data(self, synthetic_data):
-        pass #TODO
+        task_output_dir = self.task.output_dir
+        synth_data_csv_output_dir = os.path.join(task_output_dir, "synthetic_data.csv")
+        synthetic_data.to_csv(synth_data_csv_output_dir)
+
 
     def _sample_original(self):
         assert(len(self.sample_method_info)==2)

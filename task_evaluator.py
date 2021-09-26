@@ -38,24 +38,22 @@ class Task_Evaluator():
             list:
                 benchmarking results of each run.
         """
-        results = []
-        for run in range(self.task.run_num):
-            combined_data, sampling_method_info, score_aggregate = self.sampler.sample_data()
-            predictions = self._classify(combined_data)
-            ground_truth = predictions[self.task.target]
-            classifier_predictions = predictions["Label"]
-            classifier_score = predictions["Score"]
-            scores = self._get_scores(ground_truth, classifier_predictions, classifier_score)
-            # make dictionary of metric name to score
-            metric_to_score = {metric:score for metric, score in zip(CLASSIFICATION_METRICS, scores)}
-            # record entry
-            # results_row = model_column + sample_size_column + score_column + classifier_column + performance_column
-            row = [self.task.task_id, self.task.path_to_generator, self.task.pycaret_model,
-                sampling_method_info, run]
-            for metric in metrics:
-                row += [metric_to_score[metric]] # TODO change to append
-            results.append(row)
-        return results
+        
+        combined_data, sampling_method_info, score_aggregate = self.sampler.sample_data()
+        predictions = self._classify(combined_data)
+        ground_truth = predictions[self.task.target]
+        classifier_predictions = predictions["Label"]
+        classifier_score = predictions["Score"]
+        scores = self._get_scores(ground_truth, classifier_predictions, classifier_score)
+        # make dictionary of metric name to score
+        metric_to_score = {metric:score for metric, score in zip(CLASSIFICATION_METRICS, scores)}
+        # record entry
+        # results_row = model_column + sample_size_column + score_column + classifier_column + performance_column
+        row = [self.task.task_id, self.task.path_to_generator, self.task.pycaret_model,
+            sampling_method_info, self.task.run_num]
+        for metric in metrics:
+            row += [metric_to_score[metric]] # TODO change to append
+        return row
         
     @classmethod
     def _get_scores(self, ground_truth, classifier_predictions, classifier_score):
@@ -82,12 +80,20 @@ class Task_Evaluator():
 
     def _get_model(self):
         return pick
+    def _store_classifier(self, classifier_model):
+        task_output_dir = self.task.output_dir
+        classifier_file_name = f"classifier_{self.task.pycaret_model}"
+        classifier_output_path = os.path.join(task_output_dir, classifier_file_name)
+        save_model(classifier_model, classifier_output_path)
 
     def _classify(self, combined_data):
         #TODO, check for ordinal and categorical features
         self._classifier_setup(combined_data)
         # Train classifier
         classifier = create_model(self.task.pycaret_model, verbose=False)
+        # Store Classifier
+        if self.task.output_dir:
+            self._store_classifier(classifier)
         # Predict on Test set
         predictions = predict_model(classifier, verbose=False) # TODO get raw_scores for AUC
         return predictions

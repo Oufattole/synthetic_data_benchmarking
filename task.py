@@ -32,7 +32,8 @@ class Task:
 
     def __init__(self, task_id=None, train_dataset=None,
                  test_dataset=None, target=None, path_to_generator=None,
-                 sampling_method_id=None, pycaret_model=None, run_num=None):
+                 sampling_method_id=None, pycaret_model=None, run_num=None,
+                 output_dir=None):
         """Create a task configuration object from a list of settings.
         Args:
             task_id (str):
@@ -60,6 +61,7 @@ class Task:
         self._sampling_method_id = sampling_method_id
         self._pycaret_model = pycaret_model
         self._run_num = run_num
+        self._output_dir = output_dir
 
     def __str__(self):
         description_str = ""
@@ -140,6 +142,10 @@ class Task:
     @property
     def run_num(self):
         return self._run_num
+    
+    @property
+    def output_dir(self):
+        return self._output_dir
 
 
 def create_tasks(train_dataset="data/train.csv",
@@ -194,41 +200,48 @@ def create_tasks(train_dataset="data/train.csv",
             generator_name[generator_path] = file_name
             generator_paths.append(generator_path)
 
-    def create_task(gen_name, task_num, classifier, generator_path, sampling_method_id, run_num):
-        task_id = "{}_{}_{}_{}".format(task_num, gen_name, sampling_method_id, classifier)
-        task_instance = Task(task_id=task_id, train_dataset=train_dataset,
-                    test_dataset=test_dataset, target=target,
-                    path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
-                    pycaret_model=classifier, run_num=run_num)
-        return task_instance
-        
-
-    for classifier in pycaret_models:
-        for sampling_method_id in get_sample_method_ids(task_sampling_method):
-            if sampling_method_id == "baseline":
-                gen_name = "none"
-                task_instance = create_task(gen_name, task_num, classifier, generator_path, sampling_method_id, run_num)
-                tasks.append(task_instance)
-                task_num += 1
-            else:
-                for generator_path in generator_paths:
-                    gen_name = generator_name[generator_path]
-                    task_instance = create_task(gen_name, task_num, classifier, generator_path, sampling_method_id, run_num)
-                    tasks.append(task_instance)
-                    task_num += 1
-                
-
     if output_dir is not None:
         if os.path.exists(output_dir):
             #automatically clears output directory
             shutil.rmtree(output_dir) 
         os.mkdir(output_dir)
 
-        for task in tasks:
-            task_path = os.path.join(output_dir, task.task_id)
-            if os.path.exists(task_path):
-                shutil.rmtree(task_path)
-            os.mkdir(task_path)
-            task.save_as(os.path.join(task_path, 'meta.json'))
+    def create_task(gen_name, task_num, classifier, generator_path,
+        sampling_method_id, run_num, output_dir):
+        task_id = "{}_{}_{}_{}_{}".format(task_num, gen_name, sampling_method_id, classifier, run_num)
+        task_output_dir = None
+        if output_dir is not None:
+            task_output_dir = os.path.join(output_dir, task_id)
+            os.mkdir(task_output_dir)
+
+        task_instance = Task(task_id=task_id, train_dataset=train_dataset,
+                    test_dataset=test_dataset, target=target,
+                    path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
+                    pycaret_model=classifier, run_num=run_num, output_dir=output_dir)
+        
+        if output_dir is not None:
+            task_instance.save_as(os.path.join(task_output_dir, 'meta.json'))
+        return task_instance
+        
+
+    for classifier in pycaret_models:
+        for sampling_method_id in get_sample_method_ids(task_sampling_method):
+            for run in range(run_num):
+                if sampling_method_id == "baseline":
+                    gen_name = "none"
+                    task_instance = create_task(gen_name, task_num, classifier,
+                        generator_path, sampling_method_id, run, output_dir)
+                    tasks.append(task_instance)
+                    task_num += 1
+                else:
+                    for generator_path in generator_paths:
+                        gen_name = generator_name[generator_path]
+                        task_instance = create_task(gen_name, task_num, classifier,
+                            generator_path, sampling_method_id, run, output_dir)
+                        tasks.append(task_instance)
+                        task_num += 1
+                
+
+    
     return tasks
 
