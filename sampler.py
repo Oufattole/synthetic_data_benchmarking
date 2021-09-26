@@ -52,6 +52,7 @@ class Sampler():
         return synthetic_data, sampling_method_info, score_aggregate
 
     def _sample_uniform(self):
+        sampling_method = "uniform"
         target = self.task.target
         target_category_frequencies = self.train_data[target].value_counts().to_dict()
         largest_target = self.train_data[target].value_counts().nlargest(n=1).values[0] # get largest target category
@@ -66,13 +67,25 @@ class Sampler():
                 conditions = {
                 target : class_name
                 } 
-                data = self.generator.sample(sample_size, conditions=conditions)
-                all_sampled_data.append(data)
-        synthetic_data = pd.concat(all_sampled_data)
-        score_aggregate = evaluate(synthetic_data, self.train_data, aggregate=True)
+                try:
+                    data = self.generator.sample(sample_size, conditions=conditions)
+                    all_sampled_data.append(data)
+                except ValueError as e: # handle case where no valid rows could be generated
+                    error_to_handle_msg = "No valid rows could be generated with the given conditions."
+                    if error_to_handle_msg in str(e):
+                        print("################################################################")
+                        print(e)#TODO log this case
+                        print(f"column_value that couldn't be generated: {class_name}")
+                    else:
+                        raise e
+        if len(all_sampled_data):
+            synthetic_data = pd.concat(all_sampled_data)
+            score_aggregate = evaluate(synthetic_data, self.train_data, aggregate=True)
 
-        sampling_method = "uniform"
-        return synthetic_data, sampling_method, score_aggregate
+            
+            return synthetic_data, sampling_method, score_aggregate
+        else:
+            return None, sampling_method, None
 
     def _sample_baseline(self):
         sampling_method_info = "baseline"

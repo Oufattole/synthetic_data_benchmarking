@@ -18,7 +18,7 @@ class Task_Evaluator():
         self.train_data = pd.read_csv(task.train_dataset)
         self.test_data = pd.read_csv(task.test_dataset)
         generator = sdv.sdv.SDV.load(task.path_to_generator)
-        self.sampler = Sampler(task.sampling_method_id, self.train_data, generator)
+        self.sampler = Sampler(task, self.train_data, generator)
 
     def evaluate_task(self, metrics=CLASSIFICATION_METRICS):
         """Run benchmark testing on a task. Save intermedia data, trained models, and optimized
@@ -40,7 +40,7 @@ class Task_Evaluator():
         """
         results = []
         for run in range(self.task.run_num):
-            combined_data, sampling_method_info = self.sampler.sample_data()
+            combined_data, sampling_method_info, score_aggregate = self.sampler.sample_data()
             predictions = self._classify(combined_data)
             ground_truth = predictions[self.task.target]
             classifier_predictions = predictions["Label"]

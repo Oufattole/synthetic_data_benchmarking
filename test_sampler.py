@@ -64,6 +64,17 @@ class TestSampler(unittest.TestCase):
         self.assertEqual(102, combined_data.shape[0])
         self.assertEqual("uniform", sampling_method_info)
         self.assertIsInstance(score_aggregate, float)
+    def test_uniform_tvae_fail(self):
+        task_uniform = self.make_task("uniform")
+
+        generator_path = "generators/default_tvae.pkl"
+        self.generator = sdv.sdv.SDV.load(generator_path)
+        
+        sampler = Sampler(task_uniform, self.train_data, self.generator)
+        combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
+        self.assertEqual(60, combined_data.shape[0])
+        self.assertEqual("uniform", sampling_method_info)
+        self.assertEqual(score_aggregate, None)
         
 
 if __name__ == '__main__':

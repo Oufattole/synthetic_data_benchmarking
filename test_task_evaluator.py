@@ -48,6 +48,18 @@ class TestTaskEvauator(unittest.TestCase):
         results = evaluator.evaluate_task()
         sampling_methods = [each[3] for each in results]
         self.assertEqual(sampling_methods, ['original 60/60'])
+    
+    def test_sampling_method_uniform(self):
+        output_dir = "tasks"
+        path_to_generator = "generators/default_gaussain_copula.pkl"
+        test_task = task.Task(task_id=1, train_dataset="data/train.csv",
+                    test_dataset="data/test.csv", target="Attrition", path_to_generator=path_to_generator,
+                 sampling_method_id="uniform", pycaret_model="lr", run_num=1)
+        evaluator = task_evaluator.Task_Evaluator(test_task)
+        results = evaluator.evaluate_task()
+        print(results)
+        sampling_methods = [each[3] for each in results]
+        self.assertEqual(sampling_methods, ['uniform'])
 
 if __name__ == '__main__':
     unittest.main()
