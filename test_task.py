@@ -57,7 +57,17 @@ class TestTask(unittest.TestCase):
         for each in tasks:
             self.assertIn(each.path_to_generator, generator_paths)
         shutil.rmtree(output_dir) 
-        os.mkdir(output_dir)       
+        os.mkdir(output_dir)   
+    def test_sampling_tasks(self):
+        sampling_methods = task.SAMPLING_METHODS
+        all_expected = ["baseline", "uniform", "original_0", "original_1", "original_2"]
+        original_expected = ["baseline", "original_0", "original_1", "original_2"]
+        uniform_expected = ["baseline", "uniform"]
+        baseline_expected = ["baseline"]
+        expected_outputs = [all_expected,original_expected, uniform_expected, baseline_expected]
+        for task_sample_method, expected in zip(sampling_methods, expected_outputs):
+            sampling_output = [each for each in task.get_sample_method_ids(task_sample_method)]
+            self.assertEqual(sampling_output, expected)
         
 if __name__ == '__main__':
     unittest.main()

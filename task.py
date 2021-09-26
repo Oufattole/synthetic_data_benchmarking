@@ -4,7 +4,28 @@ import pickle
 import shutil
 from pycaret.classification import * # Preprocessing, modelling, interpretation, deployment...
 import pandas as pd
-from sampler import Sampler
+
+ORIGINAL_STEPS = 3
+SAMPLING_METHODS = ["all", "original", "uniform", "baseline"]
+
+def get_sample_method_ids(sample_method):
+    if sample_method != "baseline":
+        yield "baseline"
+    yield from _get_sample_method_ids_no_baseline(sample_method)
+
+def _get_sample_method_ids_no_baseline(sample_method):
+    if sample_method ==  "all":
+        yield from _get_sample_method_ids_no_baseline("uniform")
+        yield from _get_sample_method_ids_no_baseline("original")
+    elif sample_method ==  "original":
+        for i in range(ORIGINAL_STEPS):
+            yield f"original_{str(i)}"
+    elif sample_method ==  "uniform":
+        yield "uniform"
+    elif sample_method == "baseline":
+        yield "baseline"
+    else:
+        raise ValueError("for task id {} task.sampling_method is {} which is invalid".format(task.task_id, task.sampling_method))
 
 class Task:
     """A class that stores the configurations to a prediction task."""
@@ -25,7 +46,7 @@ class Task:
             path_to_generator (str)
                 the path where the generator is stored
             sampling_method_id (str):
-                unique sampling method id
+                unique sampling method id: "uniform" , "original", or "baseline"
             pycaret_model (str):
                 the pycaret classifier ID, this classifier will be trained and tested
             run_num (int):
@@ -140,7 +161,7 @@ def create_tasks(train_dataset="data/train.csv",
         pycaret_models (list):
            list of strings of pycaret classification models to use, if None runs all.
         sampling_method (str):
-            "uniform" , "original", "baseline", or "all" (for both uniform and original)
+            "uniform" , "original", "baseline" (no sampling), or "all" (for both uniform and original)
         run_num (int):
             the number of times to generate a sample and test a classifier on it.
         output_dir (str):
@@ -173,16 +194,29 @@ def create_tasks(train_dataset="data/train.csv",
             generator_name[generator_path] = file_name
             generator_paths.append(generator_path)
 
+    def create_task(gen_name, task_num, classifier, generator_path, sampling_method_id, run_num):
+        task_id = "{}_{}_{}_{}".format(task_num, gen_name, sampling_method_id, classifier)
+        task_instance = Task(task_id=task_id, train_dataset=train_dataset,
+                    test_dataset=test_dataset, target=target,
+                    path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
+                    pycaret_model=classifier, run_num=run_num)
+        return task_instance
+        
+
     for classifier in pycaret_models:
-        for generator_path in generator_paths:
-            for sampling_method_id in Sampler.get_sample_method_ids(task_sampling_method):
-                task_id = "{}_{}_{}".format(task_num, generator_name[generator_path], classifier)
-                task = Task(task_id=task_id, train_dataset=train_dataset,
-                            test_dataset=test_dataset, target=target,
-                            path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
-                            pycaret_model=classifier, run_num=run_num)
-                tasks.append(task)
+        for sampling_method_id in get_sample_method_ids(task_sampling_method):
+            if sampling_method_id == "baseline":
+                gen_name = "none"
+                task_instance = create_task(gen_name, task_num, classifier, generator_path, sampling_method_id, run_num)
+                tasks.append(task_instance)
                 task_num += 1
+            else:
+                for generator_path in generator_paths:
+                    gen_name = generator_name[generator_path]
+                    task_instance = create_task(gen_name, task_num, classifier, generator_path, sampling_method_id, run_num)
+                    tasks.append(task_instance)
+                    task_num += 1
+                
 
     if output_dir is not None:
         if os.path.exists(output_dir):
@@ -197,3 +231,4 @@ def create_tasks(train_dataset="data/train.csv",
             os.mkdir(task_path)
             task.save_as(os.path.join(task_path, 'meta.json'))
     return tasks
+

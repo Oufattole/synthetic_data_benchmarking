@@ -8,81 +8,72 @@ import sdmetrics
 import sklearn
 import os
 import pickle
+import task
 
-ORIGINAL_STEPS = 3
+
 
 class Sampler():
-    def __init__(self, sample_method_name, train_data, generator):
+    def __init__(self, task_instance, train_data, generator):
+        sample_method_name = task_instance.sampling_method_id
+        self.task = task_instance
         self.sample_method_info = sample_method_name.split("_")
         self.sampling_method = self.sample_method_info[0]
         self.generator = generator
-        self.split = "hi"
         self.train_data = train_data
 
     def sample_data(self):
+        synthetic_data, sampling_method_info, score_aggregate = None, None, None
         if self.sampling_method ==  "original":
-            return self._sample_original()
+            synthetic_data, sampling_method_info, score_aggregate = self._sample_original()
         elif self.sampling_method ==  "uniform":
-            return self._sample_uniform()
+            synthetic_data, sampling_method_info, score_aggregate = self._sample_uniform()
         elif self.sampling_method ==  "baseline":
-            return self._sample_baseline()
+            sampling_method_info = self._sample_baseline()
         else:
             raise ValueError("for task id {} task.sampling_method_id is {} which is invalid".format(task.task_id, task.sampling_method))
+        self._store_data(synthetic_data)
+        combined_data = pd.concat([self.train_data, synthetic_data])
+        return combined_data, sampling_method_info, score_aggregate
 
-    def _sample_all(self):
-        syn_original = self._sample_original() #pdconcat this
-        syn_uniform = self._sample_uniform()
-        combined_data = pd.concat([self.train_data, syn_original, syn_uniform])
+    def _store_data(self, synthetic_data):
+        pass #TODO
 
     def _sample_original(self):
         assert(len(self.sample_method_info)==2)
         train_data_size = self.train_data.shape[0]
-        step_size = train_data_size // ORIGINAL_STEPS
+        step_size = train_data_size // task.ORIGINAL_STEPS
         steps = int(self.sample_method_info[1])+1
         sample_size = step_size*steps
         synthetic_data = self.generator.sample(sample_size)
-        score_aggregate = evaluate(synthetic_data, self.train_data, aggregate=False)
+        score_aggregate = evaluate(synthetic_data, self.train_data, aggregate=True)
         # score_column = make_score_column(score_aggregate)
-        combined_data = pd.concat([self.train_data, synthetic_data])
-        sampling_method_info = "original " + str(sample_size) +"/"+ str(train_data_size)
-        return combined_data, sampling_method_info
-
-    def _sample_uniform(self, train_data):
-        pass # TODO
-        target_category_frequencies = self.train_data['status'].value_counts().to_dict()
-        largest_target = self.train_data[target].value_counts().nlargest(n=1).values[0] # get largest target category
-        for each in target_category_frequency:
-            #do rejection sampling
-            pass
         
-        num_target_samples = self.train_data[train_data[target] == True]#added True here, TODO fix this
-        synthetic_data = self.generator.sample(sample_size)
-        score_aggregate = evaluate(synthetic_data, train, aggregate=False)
-        # score_column = make_score_column(score_aggregate)
-        combined_data = pd.concat([self.train_data, synthetic_data])
-        sampling_method = "Uniform"
-        yield combined_data, sampling_method
+        sampling_method_info = "original " + str(sample_size) +"/"+ str(train_data_size)
+        return synthetic_data, sampling_method_info, score_aggregate
+
+    def _sample_uniform(self):
+        target = self.task.target
+        target_category_frequencies = self.train_data[target].value_counts().to_dict()
+        largest_target = self.train_data[target].value_counts().nlargest(n=1).values[0] # get largest target category
+        class_to_sample_size = {}
+        for class_name in target_category_frequencies:
+            sample_size = largest_target - target_category_frequencies[class_name]
+            class_to_sample_size[class_name] = sample_size
+        all_sampled_data = []
+
+        for class_name, sample_size in class_to_sample_size.items():
+            if sample_size > 0:
+                conditions = {
+                target : class_name
+                } 
+                data = self.generator.sample(sample_size, conditions=conditions)
+                all_sampled_data.append(data)
+        synthetic_data = pd.concat(all_sampled_data)
+        score_aggregate = evaluate(synthetic_data, self.train_data, aggregate=True)
+
+        sampling_method = "uniform"
+        return synthetic_data, sampling_method, score_aggregate
 
     def _sample_baseline(self):
         sampling_method_info = "baseline"
-        print("wth")
-        return self.train_data, sampling_method_info
-
-    @classmethod
-    def get_sample_method_ids(cls, task_sample_method, do_baseline=True):
-        if task_sample_method ==  "all":
-            yield from cls.get_sample_method_ids("baseline", do_baseline)
-            yield from cls.get_sample_method_ids("uniform", do_baseline=False)
-            yield from cls.get_sample_method_ids("original", do_baseline=False)
-        elif task_sample_method ==  "original":
-            yield from cls.get_sample_method_ids("baseline", do_baseline)
-            for i in range(ORIGINAL_STEPS):
-                yield f"original_{str(i)}"
-        elif task_sample_method ==  "uniform":
-            yield from cls.get_sample_method_ids("baseline", do_baseline)
-            yield "uniform"
-        elif task_sample_method == "baseline":
-            if do_baseline:
-                yield "baseline"
-        else:
-            raise ValueError("for task id {} task.sampling_method is {} which is invalid".format(task.task_id, task.sampling_method))
+        return sampling_method_info

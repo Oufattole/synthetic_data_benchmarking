@@ -19827,3 +19827,2149 @@
                    warm_start=False))
 2021-07-13 10:30:13,893:INFO:Checking exceptions
 2021-07-13 10:30:13,893:INFO:Preloading libraries
+2021-09-25 23:28:55,009:INFO:PyCaret Supervised Module
+2021-09-25 23:28:55,010:INFO:ML Usecase: classification
+2021-09-25 23:28:55,010:INFO:version 2.3.4
+2021-09-25 23:28:55,010:INFO:Initializing setup()
+2021-09-25 23:28:55,010:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-25 23:28:55,010:INFO:Checking environment
+2021-09-25 23:28:55,010:INFO:python_version: 3.6.13
+2021-09-25 23:28:55,010:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-25 23:28:55,010:INFO:machine: x86_64
+2021-09-25 23:28:55,035:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-25 23:28:55,036:WARNING:cannot find psutil installation. memory not traceable. Install psutil using pip to enable memory logging.
+2021-09-25 23:28:55,036:INFO:Checking libraries
+2021-09-25 23:28:55,036:INFO:pd==1.1.5
+2021-09-25 23:28:55,036:INFO:numpy==1.19.5
+2021-09-25 23:28:55,036:INFO:sklearn==0.23.2
+2021-09-25 23:28:55,036:INFO:lightgbm==3.2.1
+2021-09-25 23:28:55,036:WARNING:catboost not found
+2021-09-25 23:28:55,036:WARNING:xgboost not found
+2021-09-25 23:28:56,295:INFO:mlflow==1.20.2
+2021-09-25 23:28:56,295:INFO:Checking Exceptions
+2021-09-25 23:28:56,295:INFO:Declaring global variables
+2021-09-25 23:28:56,296:INFO:USI: fb71
+2021-09-25 23:28:56,296:INFO:pycaret_globals: {'iterative_imputation_iters_param', 'imputation_regressor', 'data_before_preprocess', '_internal_pipeline', 'fold_param', 'imputation_classifier', 'create_model_container', '_all_models_internal', '_all_metrics', 'exp_name_log', 'transform_target_param', 'USI', 'fix_imbalance_param', 'fold_generator', 'fold_shuffle_param', 'log_plots_param', 'X_test', 'X_train', 'fold_groups_param_full', '_ml_usecase', 'seed', 'n_jobs_param', 'transform_target_method_param', 'y', 'experiment__', 'X', '_available_plots', 'pycaret_globals', 'target_param', 'gpu_param', 'y_test', 'prep_pipe', 'display_container', 'html_param', '_gpu_n_jobs_param', 'master_model_container', 'stratify_param', 'fold_groups_param', 'logging_param', 'fix_imbalance_method_param', '_all_models', 'y_train'}
+2021-09-25 23:28:56,296:INFO:Preparing display monitor
+2021-09-25 23:28:56,296:INFO:Importing libraries
+2021-09-25 23:28:56,296:INFO:Copying data for preprocessing
+2021-09-25 23:28:56,296:INFO:Declaring preprocessing parameters
+2021-09-25 23:28:56,297:INFO:Creating preprocessing pipeline
+2021-09-25 23:28:56,395:INFO:Preprocessing pipeline created successfully
+2021-09-25 23:28:56,395:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-25 23:28:56,395:INFO:Creating global containers
+2021-09-25 23:28:56,398:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-25 23:28:56,602:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-25 23:28:56,602:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-25 23:28:56,667:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-25 23:28:56,668:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-25 23:28:56,668:INFO:Creating grid variables
+2021-09-25 23:28:56,678:INFO:create_model_container: 0
+2021-09-25 23:28:56,678:INFO:master_model_container: 0
+2021-09-25 23:28:56,678:INFO:display_container: 1
+2021-09-25 23:28:56,683:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-25 23:28:56,683:INFO:setup() succesfully completed......................................
+2021-09-25 23:28:56,761:INFO:gpu_param set to False
+2021-09-25 23:28:56,846:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-25 23:28:56,846:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:02:21,207:INFO:PyCaret Supervised Module
+2021-09-26 11:02:21,207:INFO:ML Usecase: classification
+2021-09-26 11:02:21,207:INFO:version 2.3.4
+2021-09-26 11:02:21,207:INFO:Initializing setup()
+2021-09-26 11:02:21,208:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 11:02:21,208:INFO:Checking environment
+2021-09-26 11:02:21,208:INFO:python_version: 3.6.13
+2021-09-26 11:02:21,208:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 11:02:21,208:INFO:machine: x86_64
+2021-09-26 11:02:21,240:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 11:02:21,241:WARNING:cannot find psutil installation. memory not traceable. Install psutil using pip to enable memory logging.
+2021-09-26 11:02:21,241:INFO:Checking libraries
+2021-09-26 11:02:21,241:INFO:pd==1.1.5
+2021-09-26 11:02:21,241:INFO:numpy==1.19.5
+2021-09-26 11:02:21,241:INFO:sklearn==0.23.2
+2021-09-26 11:02:21,241:INFO:lightgbm==3.2.1
+2021-09-26 11:02:21,241:WARNING:catboost not found
+2021-09-26 11:02:21,241:WARNING:xgboost not found
+2021-09-26 11:02:22,652:INFO:mlflow==1.20.2
+2021-09-26 11:02:22,652:INFO:Checking Exceptions
+2021-09-26 11:02:22,652:INFO:Declaring global variables
+2021-09-26 11:02:22,652:INFO:USI: b2f4
+2021-09-26 11:02:22,652:INFO:pycaret_globals: {'USI', 'gpu_param', 'fix_imbalance_param', '_ml_usecase', 'create_model_container', '_internal_pipeline', 'fold_shuffle_param', 'y', 'experiment__', 'iterative_imputation_iters_param', 'fold_generator', 'log_plots_param', 'data_before_preprocess', '_all_metrics', 'display_container', 'X_test', '_available_plots', 'pycaret_globals', 'exp_name_log', 'fold_param', 'X', '_gpu_n_jobs_param', 'seed', 'transform_target_method_param', '_all_models_internal', 'fold_groups_param', 'master_model_container', '_all_models', 'n_jobs_param', 'prep_pipe', 'target_param', 'imputation_classifier', 'transform_target_param', 'fold_groups_param_full', 'imputation_regressor', 'fix_imbalance_method_param', 'X_train', 'logging_param', 'y_train', 'y_test', 'stratify_param', 'html_param'}
+2021-09-26 11:02:22,653:INFO:Preparing display monitor
+2021-09-26 11:02:22,653:INFO:Importing libraries
+2021-09-26 11:02:22,653:INFO:Copying data for preprocessing
+2021-09-26 11:02:22,654:INFO:Declaring preprocessing parameters
+2021-09-26 11:02:22,657:INFO:Creating preprocessing pipeline
+2021-09-26 11:02:22,700:INFO:Preprocessing pipeline created successfully
+2021-09-26 11:02:22,700:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 11:02:22,700:INFO:Creating global containers
+2021-09-26 11:02:22,705:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 11:02:22,958:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:02:22,959:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:02:23,030:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:02:23,031:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:02:23,031:INFO:Creating grid variables
+2021-09-26 11:02:23,041:INFO:create_model_container: 0
+2021-09-26 11:02:23,042:INFO:master_model_container: 0
+2021-09-26 11:02:23,042:INFO:display_container: 1
+2021-09-26 11:02:23,046:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 11:02:23,046:INFO:setup() succesfully completed......................................
+2021-09-26 11:02:23,123:INFO:gpu_param set to False
+2021-09-26 11:02:23,208:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:02:23,209:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:03:12,347:INFO:PyCaret Supervised Module
+2021-09-26 11:03:12,347:INFO:ML Usecase: classification
+2021-09-26 11:03:12,348:INFO:version 2.3.4
+2021-09-26 11:03:12,348:INFO:Initializing setup()
+2021-09-26 11:03:12,348:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 11:03:12,348:INFO:Checking environment
+2021-09-26 11:03:12,348:INFO:python_version: 3.6.13
+2021-09-26 11:03:12,348:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 11:03:12,348:INFO:machine: x86_64
+2021-09-26 11:03:12,361:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 11:03:12,361:WARNING:cannot find psutil installation. memory not traceable. Install psutil using pip to enable memory logging.
+2021-09-26 11:03:12,361:INFO:Checking libraries
+2021-09-26 11:03:12,362:INFO:pd==1.1.5
+2021-09-26 11:03:12,362:INFO:numpy==1.19.5
+2021-09-26 11:03:12,362:INFO:sklearn==0.23.2
+2021-09-26 11:03:12,362:INFO:lightgbm==3.2.1
+2021-09-26 11:03:12,362:WARNING:catboost not found
+2021-09-26 11:03:12,362:WARNING:xgboost not found
+2021-09-26 11:03:12,603:INFO:mlflow==1.20.2
+2021-09-26 11:03:12,603:INFO:Checking Exceptions
+2021-09-26 11:03:12,604:INFO:Declaring global variables
+2021-09-26 11:03:12,604:INFO:USI: 104c
+2021-09-26 11:03:12,604:INFO:pycaret_globals: {'X', 'target_param', 'n_jobs_param', '_all_metrics', 'logging_param', 'transform_target_param', 'fold_groups_param_full', '_gpu_n_jobs_param', 'USI', 'y_train', 'prep_pipe', 'experiment__', 'create_model_container', 'imputation_regressor', 'fold_generator', 'fold_param', 'html_param', '_all_models_internal', 'master_model_container', 'X_test', 'gpu_param', 'seed', 'log_plots_param', 'pycaret_globals', 'y', '_all_models', 'y_test', 'fold_groups_param', '_available_plots', 'iterative_imputation_iters_param', 'fix_imbalance_param', '_ml_usecase', 'X_train', 'stratify_param', 'fix_imbalance_method_param', 'exp_name_log', 'fold_shuffle_param', 'transform_target_method_param', '_internal_pipeline', 'data_before_preprocess', 'display_container', 'imputation_classifier'}
+2021-09-26 11:03:12,604:INFO:Preparing display monitor
+2021-09-26 11:03:12,604:INFO:Importing libraries
+2021-09-26 11:03:12,604:INFO:Copying data for preprocessing
+2021-09-26 11:03:12,604:INFO:Declaring preprocessing parameters
+2021-09-26 11:03:12,605:INFO:Creating preprocessing pipeline
+2021-09-26 11:03:12,618:INFO:Preprocessing pipeline created successfully
+2021-09-26 11:03:12,618:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 11:03:12,618:INFO:Creating global containers
+2021-09-26 11:03:12,618:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 11:03:12,789:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:03:12,789:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:03:12,852:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:03:12,852:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:03:12,853:INFO:Creating grid variables
+2021-09-26 11:03:12,855:INFO:create_model_container: 0
+2021-09-26 11:03:12,855:INFO:master_model_container: 0
+2021-09-26 11:03:12,855:INFO:display_container: 1
+2021-09-26 11:03:12,859:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 11:03:12,859:INFO:setup() succesfully completed......................................
+2021-09-26 11:03:12,935:INFO:gpu_param set to False
+2021-09-26 11:03:13,018:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:03:13,018:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:06:21,344:INFO:PyCaret Supervised Module
+2021-09-26 11:06:21,345:INFO:ML Usecase: classification
+2021-09-26 11:06:21,345:INFO:version 2.3.4
+2021-09-26 11:06:21,345:INFO:Initializing setup()
+2021-09-26 11:06:21,345:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 11:06:21,345:INFO:Checking environment
+2021-09-26 11:06:21,345:INFO:python_version: 3.6.13
+2021-09-26 11:06:21,345:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 11:06:21,345:INFO:machine: x86_64
+2021-09-26 11:06:21,358:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 11:06:21,358:WARNING:cannot find psutil installation. memory not traceable. Install psutil using pip to enable memory logging.
+2021-09-26 11:06:21,358:INFO:Checking libraries
+2021-09-26 11:06:21,359:INFO:pd==1.1.5
+2021-09-26 11:06:21,359:INFO:numpy==1.19.5
+2021-09-26 11:06:21,359:INFO:sklearn==0.23.2
+2021-09-26 11:06:21,359:INFO:lightgbm==3.2.1
+2021-09-26 11:06:21,359:WARNING:catboost not found
+2021-09-26 11:06:21,359:WARNING:xgboost not found
+2021-09-26 11:06:21,799:INFO:mlflow==1.20.2
+2021-09-26 11:06:21,800:INFO:Checking Exceptions
+2021-09-26 11:06:21,800:INFO:Declaring global variables
+2021-09-26 11:06:21,800:INFO:USI: bf1d
+2021-09-26 11:06:21,800:INFO:pycaret_globals: {'logging_param', '_ml_usecase', 'stratify_param', 'pycaret_globals', '_available_plots', 'imputation_classifier', 'fold_groups_param', 'display_container', 'transform_target_param', 'create_model_container', 'X_train', 'transform_target_method_param', 'iterative_imputation_iters_param', '_gpu_n_jobs_param', '_all_models', 'fix_imbalance_param', 'fold_shuffle_param', 'fold_param', 'html_param', 'fold_groups_param_full', 'X', 'fold_generator', 'exp_name_log', 'imputation_regressor', 'gpu_param', 'target_param', '_all_metrics', 'y', 'master_model_container', 'log_plots_param', 'n_jobs_param', '_all_models_internal', '_internal_pipeline', 'data_before_preprocess', 'USI', 'experiment__', 'y_train', 'prep_pipe', 'fix_imbalance_method_param', 'X_test', 'y_test', 'seed'}
+2021-09-26 11:06:21,800:INFO:Preparing display monitor
+2021-09-26 11:06:21,800:INFO:Importing libraries
+2021-09-26 11:06:21,800:INFO:Copying data for preprocessing
+2021-09-26 11:06:21,801:INFO:Declaring preprocessing parameters
+2021-09-26 11:06:21,802:INFO:Creating preprocessing pipeline
+2021-09-26 11:06:21,824:INFO:Preprocessing pipeline created successfully
+2021-09-26 11:06:21,824:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 11:06:21,824:INFO:Creating global containers
+2021-09-26 11:06:21,825:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 11:06:22,015:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:06:22,016:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:06:22,085:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:06:22,086:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:06:22,086:INFO:Creating grid variables
+2021-09-26 11:06:22,090:INFO:create_model_container: 0
+2021-09-26 11:06:22,090:INFO:master_model_container: 0
+2021-09-26 11:06:22,090:INFO:display_container: 1
+2021-09-26 11:06:22,094:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 11:06:22,094:INFO:setup() succesfully completed......................................
+2021-09-26 11:06:22,172:INFO:gpu_param set to False
+2021-09-26 11:06:22,257:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:06:22,258:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:06:46,885:INFO:PyCaret Supervised Module
+2021-09-26 11:06:46,885:INFO:ML Usecase: classification
+2021-09-26 11:06:46,885:INFO:version 2.3.4
+2021-09-26 11:06:46,885:INFO:Initializing setup()
+2021-09-26 11:06:46,885:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 11:06:46,885:INFO:Checking environment
+2021-09-26 11:06:46,885:INFO:python_version: 3.6.13
+2021-09-26 11:06:46,885:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 11:06:46,885:INFO:machine: x86_64
+2021-09-26 11:06:46,894:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 11:06:46,895:WARNING:cannot find psutil installation. memory not traceable. Install psutil using pip to enable memory logging.
+2021-09-26 11:06:46,895:INFO:Checking libraries
+2021-09-26 11:06:46,895:INFO:pd==1.1.5
+2021-09-26 11:06:46,895:INFO:numpy==1.19.5
+2021-09-26 11:06:46,895:INFO:sklearn==0.23.2
+2021-09-26 11:06:46,895:INFO:lightgbm==3.2.1
+2021-09-26 11:06:46,895:WARNING:catboost not found
+2021-09-26 11:06:46,895:WARNING:xgboost not found
+2021-09-26 11:06:47,137:INFO:mlflow==1.20.2
+2021-09-26 11:06:47,138:INFO:Checking Exceptions
+2021-09-26 11:06:47,138:INFO:Declaring global variables
+2021-09-26 11:06:47,138:INFO:USI: 1785
+2021-09-26 11:06:47,138:INFO:pycaret_globals: {'X', 'data_before_preprocess', 'X_test', 'y_test', 'prep_pipe', 'experiment__', 'html_param', '_all_models_internal', 'fix_imbalance_method_param', 'imputation_classifier', 'y', '_all_models', 'seed', 'imputation_regressor', 'X_train', 'target_param', 'stratify_param', 'create_model_container', 'master_model_container', 'fold_groups_param_full', 'fold_param', 'gpu_param', 'iterative_imputation_iters_param', '_gpu_n_jobs_param', 'USI', 'display_container', 'fold_groups_param', '_internal_pipeline', 'fold_shuffle_param', 'y_train', 'exp_name_log', '_all_metrics', 'pycaret_globals', 'fix_imbalance_param', '_ml_usecase', 'logging_param', 'log_plots_param', 'transform_target_param', 'fold_generator', 'transform_target_method_param', '_available_plots', 'n_jobs_param'}
+2021-09-26 11:06:47,138:INFO:Preparing display monitor
+2021-09-26 11:06:47,138:INFO:Importing libraries
+2021-09-26 11:06:47,138:INFO:Copying data for preprocessing
+2021-09-26 11:06:47,138:INFO:Declaring preprocessing parameters
+2021-09-26 11:06:47,139:INFO:Creating preprocessing pipeline
+2021-09-26 11:06:47,150:INFO:Preprocessing pipeline created successfully
+2021-09-26 11:06:47,150:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 11:06:47,151:INFO:Creating global containers
+2021-09-26 11:06:47,151:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 11:06:47,318:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:06:47,318:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:06:47,384:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:06:47,385:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:06:47,385:INFO:Creating grid variables
+2021-09-26 11:06:47,388:INFO:create_model_container: 0
+2021-09-26 11:06:47,388:INFO:master_model_container: 0
+2021-09-26 11:06:47,388:INFO:display_container: 1
+2021-09-26 11:06:47,392:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 11:06:47,392:INFO:setup() succesfully completed......................................
+2021-09-26 11:06:47,470:INFO:gpu_param set to False
+2021-09-26 11:06:47,552:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:06:47,552:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:07:10,251:INFO:PyCaret Supervised Module
+2021-09-26 11:07:10,251:INFO:ML Usecase: classification
+2021-09-26 11:07:10,251:INFO:version 2.3.4
+2021-09-26 11:07:10,251:INFO:Initializing setup()
+2021-09-26 11:07:10,251:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 11:07:10,251:INFO:Checking environment
+2021-09-26 11:07:10,251:INFO:python_version: 3.6.13
+2021-09-26 11:07:10,251:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 11:07:10,251:INFO:machine: x86_64
+2021-09-26 11:07:10,260:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 11:07:10,261:WARNING:cannot find psutil installation. memory not traceable. Install psutil using pip to enable memory logging.
+2021-09-26 11:07:10,261:INFO:Checking libraries
+2021-09-26 11:07:10,261:INFO:pd==1.1.5
+2021-09-26 11:07:10,261:INFO:numpy==1.19.5
+2021-09-26 11:07:10,261:INFO:sklearn==0.23.2
+2021-09-26 11:07:10,261:INFO:lightgbm==3.2.1
+2021-09-26 11:07:10,261:WARNING:catboost not found
+2021-09-26 11:07:10,261:WARNING:xgboost not found
+2021-09-26 11:07:10,493:INFO:mlflow==1.20.2
+2021-09-26 11:07:10,493:INFO:Checking Exceptions
+2021-09-26 11:07:10,494:INFO:Declaring global variables
+2021-09-26 11:07:10,494:INFO:USI: 3a2c
+2021-09-26 11:07:10,494:INFO:pycaret_globals: {'target_param', 'fold_groups_param_full', 'gpu_param', '_internal_pipeline', '_available_plots', 'logging_param', 'USI', 'data_before_preprocess', 'log_plots_param', 'display_container', 'pycaret_globals', '_all_metrics', 'iterative_imputation_iters_param', '_all_models', '_ml_usecase', 'exp_name_log', 'imputation_regressor', 'fold_shuffle_param', 'prep_pipe', 'master_model_container', 'transform_target_param', 'create_model_container', 'fix_imbalance_param', 'y', 'stratify_param', 'y_test', 'X_train', 'y_train', 'X', 'fold_param', '_all_models_internal', 'experiment__', 'imputation_classifier', 'fold_generator', 'n_jobs_param', '_gpu_n_jobs_param', 'fix_imbalance_method_param', 'seed', 'X_test', 'transform_target_method_param', 'fold_groups_param', 'html_param'}
+2021-09-26 11:07:10,494:INFO:Preparing display monitor
+2021-09-26 11:07:10,494:INFO:Importing libraries
+2021-09-26 11:07:10,494:INFO:Copying data for preprocessing
+2021-09-26 11:07:10,494:INFO:Declaring preprocessing parameters
+2021-09-26 11:07:10,495:INFO:Creating preprocessing pipeline
+2021-09-26 11:07:10,507:INFO:Preprocessing pipeline created successfully
+2021-09-26 11:07:10,507:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 11:07:10,507:INFO:Creating global containers
+2021-09-26 11:07:10,508:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 11:07:10,678:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:07:10,678:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:07:10,744:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:07:10,744:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:07:10,745:INFO:Creating grid variables
+2021-09-26 11:07:10,747:INFO:create_model_container: 0
+2021-09-26 11:07:10,747:INFO:master_model_container: 0
+2021-09-26 11:07:10,747:INFO:display_container: 1
+2021-09-26 11:07:10,751:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 11:07:10,751:INFO:setup() succesfully completed......................................
+2021-09-26 11:07:10,824:INFO:gpu_param set to False
+2021-09-26 11:07:10,905:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:07:10,906:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:08:16,319:INFO:PyCaret Supervised Module
+2021-09-26 11:08:16,320:INFO:ML Usecase: classification
+2021-09-26 11:08:16,320:INFO:version 2.3.4
+2021-09-26 11:08:16,320:INFO:Initializing setup()
+2021-09-26 11:08:16,320:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 11:08:16,321:INFO:Checking environment
+2021-09-26 11:08:16,321:INFO:python_version: 3.6.13
+2021-09-26 11:08:16,321:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 11:08:16,321:INFO:machine: x86_64
+2021-09-26 11:08:16,332:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 11:08:16,333:WARNING:cannot find psutil installation. memory not traceable. Install psutil using pip to enable memory logging.
+2021-09-26 11:08:16,333:INFO:Checking libraries
+2021-09-26 11:08:16,333:INFO:pd==1.1.5
+2021-09-26 11:08:16,333:INFO:numpy==1.19.5
+2021-09-26 11:08:16,333:INFO:sklearn==0.23.2
+2021-09-26 11:08:16,333:INFO:lightgbm==3.2.1
+2021-09-26 11:08:16,333:WARNING:catboost not found
+2021-09-26 11:08:16,334:WARNING:xgboost not found
+2021-09-26 11:08:16,797:INFO:mlflow==1.20.2
+2021-09-26 11:08:16,797:INFO:Checking Exceptions
+2021-09-26 11:08:16,797:INFO:Declaring global variables
+2021-09-26 11:08:16,797:INFO:USI: ea39
+2021-09-26 11:08:16,798:INFO:pycaret_globals: {'y_train', 'imputation_classifier', 'USI', 'n_jobs_param', '_all_models_internal', 'fix_imbalance_method_param', 'imputation_regressor', 'logging_param', 'prep_pipe', 'pycaret_globals', '_all_metrics', '_available_plots', 'log_plots_param', 'y', 'target_param', 'fold_shuffle_param', 'X', 'gpu_param', 'fold_param', 'experiment__', '_gpu_n_jobs_param', '_all_models', 'master_model_container', 'exp_name_log', 'fix_imbalance_param', '_internal_pipeline', 'stratify_param', 'X_train', 'fold_groups_param_full', 'html_param', 'create_model_container', 'display_container', 'data_before_preprocess', 'fold_groups_param', 'iterative_imputation_iters_param', 'y_test', 'fold_generator', '_ml_usecase', 'X_test', 'seed', 'transform_target_method_param', 'transform_target_param'}
+2021-09-26 11:08:16,798:INFO:Preparing display monitor
+2021-09-26 11:08:16,798:INFO:Importing libraries
+2021-09-26 11:08:16,798:INFO:Copying data for preprocessing
+2021-09-26 11:08:16,798:INFO:Declaring preprocessing parameters
+2021-09-26 11:08:16,799:INFO:Creating preprocessing pipeline
+2021-09-26 11:08:16,818:INFO:Preprocessing pipeline created successfully
+2021-09-26 11:08:16,818:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 11:08:16,818:INFO:Creating global containers
+2021-09-26 11:08:16,819:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 11:08:17,006:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:08:17,006:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:08:17,073:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:08:17,074:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 11:08:17,074:INFO:Creating grid variables
+2021-09-26 11:08:17,078:INFO:create_model_container: 0
+2021-09-26 11:08:17,078:INFO:master_model_container: 0
+2021-09-26 11:08:17,078:INFO:display_container: 1
+2021-09-26 11:08:17,082:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 11:08:17,082:INFO:setup() succesfully completed......................................
+2021-09-26 11:08:17,156:INFO:gpu_param set to False
+2021-09-26 11:08:17,240:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 11:08:17,240:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:37:19,495:INFO:PyCaret Supervised Module
+2021-09-26 12:37:19,496:INFO:ML Usecase: classification
+2021-09-26 12:37:19,496:INFO:version 2.3.4
+2021-09-26 12:37:19,496:INFO:Initializing setup()
+2021-09-26 12:37:19,496:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 12:37:19,496:INFO:Checking environment
+2021-09-26 12:37:19,497:INFO:python_version: 3.6.13
+2021-09-26 12:37:19,497:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 12:37:19,497:INFO:machine: x86_64
+2021-09-26 12:37:19,512:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 12:37:19,513:INFO:Memory: svmem(total=17179869184, available=5929336832, percent=65.5, used=9247457280, free=18038784, active=5916045312, inactive=5530943488, wired=3331411968)
+2021-09-26 12:37:19,513:INFO:Physical Core: 6
+2021-09-26 12:37:19,513:INFO:Logical Core: 12
+2021-09-26 12:37:19,513:INFO:Checking libraries
+2021-09-26 12:37:19,513:INFO:pd==1.1.4
+2021-09-26 12:37:19,513:INFO:numpy==1.19.5
+2021-09-26 12:37:19,513:INFO:sklearn==0.23.2
+2021-09-26 12:37:19,513:INFO:lightgbm==3.2.1
+2021-09-26 12:37:19,513:WARNING:catboost not found
+2021-09-26 12:37:19,514:WARNING:xgboost not found
+2021-09-26 12:37:19,966:INFO:mlflow==1.20.2
+2021-09-26 12:37:19,966:INFO:Checking Exceptions
+2021-09-26 12:37:19,966:INFO:Declaring global variables
+2021-09-26 12:37:19,966:INFO:USI: c26a
+2021-09-26 12:37:19,966:INFO:pycaret_globals: {'y_test', '_all_models_internal', 'fold_generator', 'transform_target_param', 'fix_imbalance_param', 'fold_groups_param_full', 'html_param', 'experiment__', 'create_model_container', 'y_train', 'stratify_param', 'X_train', 'transform_target_method_param', 'data_before_preprocess', '_ml_usecase', 'master_model_container', 'gpu_param', 'exp_name_log', 'X', 'y', 'seed', 'imputation_regressor', 'USI', 'n_jobs_param', 'fold_param', '_gpu_n_jobs_param', 'fix_imbalance_method_param', 'target_param', 'logging_param', 'imputation_classifier', 'display_container', '_all_models', 'fold_groups_param', 'pycaret_globals', '_all_metrics', 'prep_pipe', 'log_plots_param', '_internal_pipeline', '_available_plots', 'X_test', 'iterative_imputation_iters_param', 'fold_shuffle_param'}
+2021-09-26 12:37:19,966:INFO:Preparing display monitor
+2021-09-26 12:37:19,966:INFO:Importing libraries
+2021-09-26 12:37:19,967:INFO:Copying data for preprocessing
+2021-09-26 12:37:19,967:INFO:Declaring preprocessing parameters
+2021-09-26 12:37:19,968:INFO:Creating preprocessing pipeline
+2021-09-26 12:37:19,987:INFO:Preprocessing pipeline created successfully
+2021-09-26 12:37:19,987:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 12:37:19,987:INFO:Creating global containers
+2021-09-26 12:37:19,988:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 12:37:20,192:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:37:20,192:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:37:20,259:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:37:20,259:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:37:20,259:INFO:Creating grid variables
+2021-09-26 12:37:20,263:INFO:create_model_container: 0
+2021-09-26 12:37:20,263:INFO:master_model_container: 0
+2021-09-26 12:37:20,263:INFO:display_container: 1
+2021-09-26 12:37:20,267:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 12:37:20,267:INFO:setup() succesfully completed......................................
+2021-09-26 12:37:20,345:INFO:gpu_param set to False
+2021-09-26 12:37:20,425:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:37:20,426:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:38:52,269:INFO:PyCaret Supervised Module
+2021-09-26 12:38:52,270:INFO:ML Usecase: classification
+2021-09-26 12:38:52,270:INFO:version 2.3.4
+2021-09-26 12:38:52,270:INFO:Initializing setup()
+2021-09-26 12:38:52,270:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 12:38:52,270:INFO:Checking environment
+2021-09-26 12:38:52,270:INFO:python_version: 3.6.13
+2021-09-26 12:38:52,270:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 12:38:52,270:INFO:machine: x86_64
+2021-09-26 12:38:52,279:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 12:38:52,279:INFO:Memory: svmem(total=17179869184, available=5907435520, percent=65.6, used=9235234816, free=17051648, active=5896130560, inactive=5591388160, wired=3339104256)
+2021-09-26 12:38:52,279:INFO:Physical Core: 6
+2021-09-26 12:38:52,279:INFO:Logical Core: 12
+2021-09-26 12:38:52,279:INFO:Checking libraries
+2021-09-26 12:38:52,279:INFO:pd==1.1.4
+2021-09-26 12:38:52,279:INFO:numpy==1.19.5
+2021-09-26 12:38:52,279:INFO:sklearn==0.23.2
+2021-09-26 12:38:52,279:INFO:lightgbm==3.2.1
+2021-09-26 12:38:52,280:WARNING:catboost not found
+2021-09-26 12:38:52,280:WARNING:xgboost not found
+2021-09-26 12:38:52,524:INFO:mlflow==1.20.2
+2021-09-26 12:38:52,524:INFO:Checking Exceptions
+2021-09-26 12:38:52,524:INFO:Declaring global variables
+2021-09-26 12:38:52,524:INFO:USI: 3f23
+2021-09-26 12:38:52,524:INFO:pycaret_globals: {'_all_models_internal', 'iterative_imputation_iters_param', 'transform_target_param', 'prep_pipe', 'fold_generator', 'imputation_regressor', 'log_plots_param', 'create_model_container', 'y', 'USI', 'fold_groups_param_full', 'X_test', 'fold_param', 'pycaret_globals', 'X_train', 'data_before_preprocess', '_all_models', 'y_train', 'stratify_param', '_ml_usecase', 'experiment__', 'n_jobs_param', 'transform_target_method_param', 'X', 'gpu_param', 'seed', '_gpu_n_jobs_param', '_internal_pipeline', '_all_metrics', 'fold_shuffle_param', 'fold_groups_param', 'exp_name_log', '_available_plots', 'logging_param', 'display_container', 'html_param', 'fix_imbalance_param', 'y_test', 'imputation_classifier', 'target_param', 'fix_imbalance_method_param', 'master_model_container'}
+2021-09-26 12:38:52,524:INFO:Preparing display monitor
+2021-09-26 12:38:52,524:INFO:Importing libraries
+2021-09-26 12:38:52,524:INFO:Copying data for preprocessing
+2021-09-26 12:38:52,524:INFO:Declaring preprocessing parameters
+2021-09-26 12:38:52,525:INFO:Creating preprocessing pipeline
+2021-09-26 12:38:52,537:INFO:Preprocessing pipeline created successfully
+2021-09-26 12:38:52,537:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 12:38:52,538:INFO:Creating global containers
+2021-09-26 12:38:52,538:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 12:38:52,714:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:38:52,715:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:38:52,780:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:38:52,781:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:38:52,781:INFO:Creating grid variables
+2021-09-26 12:38:52,783:INFO:create_model_container: 0
+2021-09-26 12:38:52,783:INFO:master_model_container: 0
+2021-09-26 12:38:52,783:INFO:display_container: 1
+2021-09-26 12:38:52,787:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 12:38:52,787:INFO:setup() succesfully completed......................................
+2021-09-26 12:38:52,863:INFO:gpu_param set to False
+2021-09-26 12:38:52,944:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:38:52,944:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:39:23,184:INFO:PyCaret Supervised Module
+2021-09-26 12:39:23,184:INFO:ML Usecase: classification
+2021-09-26 12:39:23,184:INFO:version 2.3.4
+2021-09-26 12:39:23,184:INFO:Initializing setup()
+2021-09-26 12:39:23,184:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 12:39:23,184:INFO:Checking environment
+2021-09-26 12:39:23,184:INFO:python_version: 3.6.13
+2021-09-26 12:39:23,184:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 12:39:23,184:INFO:machine: x86_64
+2021-09-26 12:39:23,194:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 12:39:23,195:INFO:Memory: svmem(total=17179869184, available=5898969088, percent=65.7, used=9237114880, free=17657856, active=5889290240, inactive=5693444096, wired=3347824640)
+2021-09-26 12:39:23,195:INFO:Physical Core: 6
+2021-09-26 12:39:23,195:INFO:Logical Core: 12
+2021-09-26 12:39:23,195:INFO:Checking libraries
+2021-09-26 12:39:23,195:INFO:pd==1.1.4
+2021-09-26 12:39:23,195:INFO:numpy==1.19.5
+2021-09-26 12:39:23,195:INFO:sklearn==0.23.2
+2021-09-26 12:39:23,195:INFO:lightgbm==3.2.1
+2021-09-26 12:39:23,195:WARNING:catboost not found
+2021-09-26 12:39:23,195:WARNING:xgboost not found
+2021-09-26 12:39:23,423:INFO:mlflow==1.20.2
+2021-09-26 12:39:23,425:INFO:Checking Exceptions
+2021-09-26 12:39:23,425:INFO:Declaring global variables
+2021-09-26 12:39:23,426:INFO:USI: 886b
+2021-09-26 12:39:23,426:INFO:pycaret_globals: {'stratify_param', 'y', 'fold_param', 'master_model_container', 'y_train', 'create_model_container', 'target_param', '_ml_usecase', 'experiment__', '_all_models', 'gpu_param', 'fold_shuffle_param', 'fold_groups_param', 'display_container', 'fold_generator', 'logging_param', 'X_train', 'USI', '_all_models_internal', 'imputation_regressor', 'fold_groups_param_full', 'data_before_preprocess', 'fix_imbalance_param', 'transform_target_method_param', 'fix_imbalance_method_param', '_available_plots', 'pycaret_globals', 'html_param', 'iterative_imputation_iters_param', 'y_test', '_gpu_n_jobs_param', 'imputation_classifier', '_internal_pipeline', 'exp_name_log', 'prep_pipe', 'transform_target_param', 'seed', 'n_jobs_param', 'X_test', 'log_plots_param', 'X', '_all_metrics'}
+2021-09-26 12:39:23,426:INFO:Preparing display monitor
+2021-09-26 12:39:23,426:INFO:Importing libraries
+2021-09-26 12:39:23,426:INFO:Copying data for preprocessing
+2021-09-26 12:39:23,426:INFO:Declaring preprocessing parameters
+2021-09-26 12:39:23,427:INFO:Creating preprocessing pipeline
+2021-09-26 12:39:23,439:INFO:Preprocessing pipeline created successfully
+2021-09-26 12:39:23,439:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 12:39:23,439:INFO:Creating global containers
+2021-09-26 12:39:23,440:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 12:39:23,614:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:39:23,614:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:39:23,679:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:39:23,679:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:39:23,679:INFO:Creating grid variables
+2021-09-26 12:39:23,682:INFO:create_model_container: 0
+2021-09-26 12:39:23,682:INFO:master_model_container: 0
+2021-09-26 12:39:23,682:INFO:display_container: 1
+2021-09-26 12:39:23,686:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 12:39:23,686:INFO:setup() succesfully completed......................................
+2021-09-26 12:39:23,760:INFO:gpu_param set to False
+2021-09-26 12:39:23,842:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:39:23,842:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:39:48,778:INFO:PyCaret Supervised Module
+2021-09-26 12:39:48,778:INFO:ML Usecase: classification
+2021-09-26 12:39:48,778:INFO:version 2.3.4
+2021-09-26 12:39:48,778:INFO:Initializing setup()
+2021-09-26 12:39:48,778:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 12:39:48,778:INFO:Checking environment
+2021-09-26 12:39:48,779:INFO:python_version: 3.6.13
+2021-09-26 12:39:48,779:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 12:39:48,779:INFO:machine: x86_64
+2021-09-26 12:39:48,789:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 12:39:48,789:INFO:Memory: svmem(total=17179869184, available=5886685184, percent=65.7, used=9228341248, free=18534400, active=5873057792, inactive=5709967360, wired=3355283456)
+2021-09-26 12:39:48,790:INFO:Physical Core: 6
+2021-09-26 12:39:48,790:INFO:Logical Core: 12
+2021-09-26 12:39:48,790:INFO:Checking libraries
+2021-09-26 12:39:48,790:INFO:pd==1.1.4
+2021-09-26 12:39:48,790:INFO:numpy==1.19.5
+2021-09-26 12:39:48,790:INFO:sklearn==0.23.2
+2021-09-26 12:39:48,790:INFO:lightgbm==3.2.1
+2021-09-26 12:39:48,790:WARNING:catboost not found
+2021-09-26 12:39:48,790:WARNING:xgboost not found
+2021-09-26 12:39:49,020:INFO:mlflow==1.20.2
+2021-09-26 12:39:49,020:INFO:Checking Exceptions
+2021-09-26 12:39:49,020:INFO:Declaring global variables
+2021-09-26 12:39:49,020:INFO:USI: 37bd
+2021-09-26 12:39:49,021:INFO:pycaret_globals: {'create_model_container', 'target_param', '_ml_usecase', 'transform_target_param', 'experiment__', 'X', 'data_before_preprocess', 'pycaret_globals', 'seed', 'display_container', 'stratify_param', 'logging_param', 'n_jobs_param', 'y_train', 'y', 'imputation_regressor', 'X_test', 'USI', 'iterative_imputation_iters_param', 'transform_target_method_param', '_available_plots', '_gpu_n_jobs_param', 'fold_groups_param', 'gpu_param', '_all_models', 'imputation_classifier', 'fold_shuffle_param', 'fold_param', 'log_plots_param', 'fix_imbalance_param', 'fix_imbalance_method_param', '_internal_pipeline', 'fold_generator', 'y_test', 'X_train', '_all_metrics', 'exp_name_log', 'fold_groups_param_full', 'html_param', '_all_models_internal', 'master_model_container', 'prep_pipe'}
+2021-09-26 12:39:49,021:INFO:Preparing display monitor
+2021-09-26 12:39:49,021:INFO:Importing libraries
+2021-09-26 12:39:49,021:INFO:Copying data for preprocessing
+2021-09-26 12:39:49,021:INFO:Declaring preprocessing parameters
+2021-09-26 12:39:49,022:INFO:Creating preprocessing pipeline
+2021-09-26 12:39:49,034:INFO:Preprocessing pipeline created successfully
+2021-09-26 12:39:49,034:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 12:39:49,034:INFO:Creating global containers
+2021-09-26 12:39:49,035:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 12:39:49,208:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:39:49,208:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:39:49,271:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:39:49,271:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:39:49,272:INFO:Creating grid variables
+2021-09-26 12:39:49,274:INFO:create_model_container: 0
+2021-09-26 12:39:49,274:INFO:master_model_container: 0
+2021-09-26 12:39:49,274:INFO:display_container: 1
+2021-09-26 12:39:49,278:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 12:39:49,278:INFO:setup() succesfully completed......................................
+2021-09-26 12:39:49,353:INFO:gpu_param set to False
+2021-09-26 12:39:49,436:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:39:49,437:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:40:11,803:INFO:PyCaret Supervised Module
+2021-09-26 12:40:11,803:INFO:ML Usecase: classification
+2021-09-26 12:40:11,803:INFO:version 2.3.4
+2021-09-26 12:40:11,803:INFO:Initializing setup()
+2021-09-26 12:40:11,803:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 12:40:11,803:INFO:Checking environment
+2021-09-26 12:40:11,803:INFO:python_version: 3.6.13
+2021-09-26 12:40:11,803:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 12:40:11,803:INFO:machine: x86_64
+2021-09-26 12:40:11,813:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 12:40:11,813:INFO:Memory: svmem(total=17179869184, available=5888614400, percent=65.7, used=9223020544, free=18583552, active=5874507776, inactive=5691564032, wired=3348512768)
+2021-09-26 12:40:11,813:INFO:Physical Core: 6
+2021-09-26 12:40:11,813:INFO:Logical Core: 12
+2021-09-26 12:40:11,813:INFO:Checking libraries
+2021-09-26 12:40:11,813:INFO:pd==1.1.4
+2021-09-26 12:40:11,813:INFO:numpy==1.19.5
+2021-09-26 12:40:11,813:INFO:sklearn==0.23.2
+2021-09-26 12:40:11,813:INFO:lightgbm==3.2.1
+2021-09-26 12:40:11,814:WARNING:catboost not found
+2021-09-26 12:40:11,814:WARNING:xgboost not found
+2021-09-26 12:40:12,045:INFO:mlflow==1.20.2
+2021-09-26 12:40:12,045:INFO:Checking Exceptions
+2021-09-26 12:40:12,045:INFO:Declaring global variables
+2021-09-26 12:40:12,045:INFO:USI: fd17
+2021-09-26 12:40:12,045:INFO:pycaret_globals: {'exp_name_log', 'y_train', 'transform_target_method_param', 'fold_groups_param_full', 'experiment__', 'create_model_container', 'y', 'html_param', 'fix_imbalance_param', 'target_param', 'fold_shuffle_param', '_all_metrics', 'USI', 'imputation_regressor', 'log_plots_param', '_all_models', '_available_plots', 'fold_generator', 'fold_groups_param', 'data_before_preprocess', 'fix_imbalance_method_param', 'seed', 'master_model_container', 'X_test', 'y_test', 'transform_target_param', 'pycaret_globals', '_gpu_n_jobs_param', 'stratify_param', 'display_container', 'imputation_classifier', 'fold_param', 'n_jobs_param', 'X', 'logging_param', 'gpu_param', '_ml_usecase', 'iterative_imputation_iters_param', '_internal_pipeline', '_all_models_internal', 'prep_pipe', 'X_train'}
+2021-09-26 12:40:12,045:INFO:Preparing display monitor
+2021-09-26 12:40:12,045:INFO:Importing libraries
+2021-09-26 12:40:12,045:INFO:Copying data for preprocessing
+2021-09-26 12:40:12,046:INFO:Declaring preprocessing parameters
+2021-09-26 12:40:12,046:INFO:Creating preprocessing pipeline
+2021-09-26 12:40:12,058:INFO:Preprocessing pipeline created successfully
+2021-09-26 12:40:12,058:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 12:40:12,058:INFO:Creating global containers
+2021-09-26 12:40:12,058:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 12:40:12,227:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:40:12,227:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:40:12,293:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:40:12,294:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 12:40:12,294:INFO:Creating grid variables
+2021-09-26 12:40:12,296:INFO:create_model_container: 0
+2021-09-26 12:40:12,297:INFO:master_model_container: 0
+2021-09-26 12:40:12,297:INFO:display_container: 1
+2021-09-26 12:40:12,301:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 12:40:12,301:INFO:setup() succesfully completed......................................
+2021-09-26 12:40:12,376:INFO:gpu_param set to False
+2021-09-26 12:40:12,460:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 12:40:12,460:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:07:17,804:INFO:PyCaret Supervised Module
+2021-09-26 14:07:17,805:INFO:ML Usecase: classification
+2021-09-26 14:07:17,805:INFO:version 2.3.4
+2021-09-26 14:07:17,805:INFO:Initializing setup()
+2021-09-26 14:07:17,805:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 14:07:17,805:INFO:Checking environment
+2021-09-26 14:07:17,805:INFO:python_version: 3.6.13
+2021-09-26 14:07:17,805:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 14:07:17,805:INFO:machine: x86_64
+2021-09-26 14:07:17,820:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 14:07:17,821:INFO:Memory: svmem(total=17179869184, available=5816242176, percent=66.1, used=9595682816, free=19361792, active=5801926656, inactive=5541138432, wired=3793756160)
+2021-09-26 14:07:17,821:INFO:Physical Core: 6
+2021-09-26 14:07:17,821:INFO:Logical Core: 12
+2021-09-26 14:07:17,821:INFO:Checking libraries
+2021-09-26 14:07:17,821:INFO:pd==1.1.4
+2021-09-26 14:07:17,821:INFO:numpy==1.19.5
+2021-09-26 14:07:17,821:INFO:sklearn==0.23.2
+2021-09-26 14:07:17,821:INFO:lightgbm==3.2.1
+2021-09-26 14:07:17,821:WARNING:catboost not found
+2021-09-26 14:07:17,822:WARNING:xgboost not found
+2021-09-26 14:07:18,339:INFO:mlflow==1.20.2
+2021-09-26 14:07:18,339:INFO:Checking Exceptions
+2021-09-26 14:07:18,339:INFO:Declaring global variables
+2021-09-26 14:07:18,339:INFO:USI: d39e
+2021-09-26 14:07:18,340:INFO:pycaret_globals: {'experiment__', 'fold_generator', '_all_models', 'n_jobs_param', '_ml_usecase', '_all_models_internal', 'prep_pipe', '_all_metrics', 'X_test', 'display_container', 'fold_param', 'pycaret_globals', 'imputation_regressor', 'fix_imbalance_method_param', 'log_plots_param', 'target_param', '_gpu_n_jobs_param', '_internal_pipeline', 'gpu_param', 'stratify_param', 'y_test', 'create_model_container', 'imputation_classifier', 'fold_shuffle_param', '_available_plots', 'html_param', 'seed', 'y', 'X_train', 'transform_target_method_param', 'transform_target_param', 'master_model_container', 'logging_param', 'data_before_preprocess', 'y_train', 'fix_imbalance_param', 'USI', 'X', 'exp_name_log', 'iterative_imputation_iters_param', 'fold_groups_param', 'fold_groups_param_full'}
+2021-09-26 14:07:18,340:INFO:Preparing display monitor
+2021-09-26 14:07:18,340:INFO:Importing libraries
+2021-09-26 14:07:18,340:INFO:Copying data for preprocessing
+2021-09-26 14:07:18,340:INFO:Declaring preprocessing parameters
+2021-09-26 14:07:18,341:INFO:Creating preprocessing pipeline
+2021-09-26 14:07:18,363:INFO:Preprocessing pipeline created successfully
+2021-09-26 14:07:18,363:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 14:07:18,363:INFO:Creating global containers
+2021-09-26 14:07:18,364:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 14:07:18,558:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:07:18,559:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:07:18,627:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:07:18,627:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:07:18,628:INFO:Creating grid variables
+2021-09-26 14:07:18,631:INFO:create_model_container: 0
+2021-09-26 14:07:18,631:INFO:master_model_container: 0
+2021-09-26 14:07:18,631:INFO:display_container: 1
+2021-09-26 14:07:18,635:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 14:07:18,635:INFO:setup() succesfully completed......................................
+2021-09-26 14:07:18,710:INFO:gpu_param set to False
+2021-09-26 14:07:18,795:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:07:18,795:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:07:46,195:INFO:PyCaret Supervised Module
+2021-09-26 14:07:46,196:INFO:ML Usecase: classification
+2021-09-26 14:07:46,196:INFO:version 2.3.4
+2021-09-26 14:07:46,196:INFO:Initializing setup()
+2021-09-26 14:07:46,196:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 14:07:46,196:INFO:Checking environment
+2021-09-26 14:07:46,196:INFO:python_version: 3.6.13
+2021-09-26 14:07:46,196:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 14:07:46,196:INFO:machine: x86_64
+2021-09-26 14:07:46,207:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 14:07:46,208:INFO:Memory: svmem(total=17179869184, available=5768986624, percent=66.4, used=9578008576, free=18612224, active=5755035648, inactive=5707313152, wired=3822972928)
+2021-09-26 14:07:46,208:INFO:Physical Core: 6
+2021-09-26 14:07:46,208:INFO:Logical Core: 12
+2021-09-26 14:07:46,208:INFO:Checking libraries
+2021-09-26 14:07:46,208:INFO:pd==1.1.4
+2021-09-26 14:07:46,208:INFO:numpy==1.19.5
+2021-09-26 14:07:46,209:INFO:sklearn==0.23.2
+2021-09-26 14:07:46,209:INFO:lightgbm==3.2.1
+2021-09-26 14:07:46,209:WARNING:catboost not found
+2021-09-26 14:07:46,209:WARNING:xgboost not found
+2021-09-26 14:07:46,664:INFO:mlflow==1.20.2
+2021-09-26 14:07:46,664:INFO:Checking Exceptions
+2021-09-26 14:07:46,665:INFO:Declaring global variables
+2021-09-26 14:07:46,665:INFO:USI: d1e4
+2021-09-26 14:07:46,665:INFO:pycaret_globals: {'logging_param', 'master_model_container', '_ml_usecase', 'X', 'y', 'fold_groups_param_full', 'imputation_regressor', '_available_plots', 'experiment__', 'fold_param', 'seed', 'pycaret_globals', '_gpu_n_jobs_param', 'exp_name_log', 'data_before_preprocess', 'fix_imbalance_method_param', 'log_plots_param', 'fix_imbalance_param', 'gpu_param', 'X_train', 'prep_pipe', 'target_param', '_all_models_internal', 'USI', 'iterative_imputation_iters_param', 'transform_target_method_param', 'display_container', 'stratify_param', 'fold_groups_param', 'y_test', 'transform_target_param', '_all_metrics', 'html_param', 'imputation_classifier', 'n_jobs_param', 'X_test', 'create_model_container', '_internal_pipeline', 'fold_generator', 'y_train', 'fold_shuffle_param', '_all_models'}
+2021-09-26 14:07:46,665:INFO:Preparing display monitor
+2021-09-26 14:07:46,665:INFO:Importing libraries
+2021-09-26 14:07:46,665:INFO:Copying data for preprocessing
+2021-09-26 14:07:46,665:INFO:Declaring preprocessing parameters
+2021-09-26 14:07:46,666:INFO:Creating preprocessing pipeline
+2021-09-26 14:07:46,686:INFO:Preprocessing pipeline created successfully
+2021-09-26 14:07:46,686:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 14:07:46,686:INFO:Creating global containers
+2021-09-26 14:07:46,688:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 14:07:46,876:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:07:46,876:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:07:46,943:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:07:46,943:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:07:46,943:INFO:Creating grid variables
+2021-09-26 14:07:46,947:INFO:create_model_container: 0
+2021-09-26 14:07:46,947:INFO:master_model_container: 0
+2021-09-26 14:07:46,947:INFO:display_container: 1
+2021-09-26 14:07:46,951:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 14:07:46,951:INFO:setup() succesfully completed......................................
+2021-09-26 14:07:47,029:INFO:gpu_param set to False
+2021-09-26 14:07:47,108:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:07:47,108:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:09:02,518:INFO:PyCaret Supervised Module
+2021-09-26 14:09:02,519:INFO:ML Usecase: classification
+2021-09-26 14:09:02,519:INFO:version 2.3.4
+2021-09-26 14:09:02,519:INFO:Initializing setup()
+2021-09-26 14:09:02,519:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 14:09:02,519:INFO:Checking environment
+2021-09-26 14:09:02,519:INFO:python_version: 3.6.13
+2021-09-26 14:09:02,519:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 14:09:02,519:INFO:machine: x86_64
+2021-09-26 14:09:02,530:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 14:09:02,530:INFO:Memory: svmem(total=17179869184, available=5803663360, percent=66.2, used=9736081408, free=84574208, active=5724323840, inactive=5447921664, wired=4011757568)
+2021-09-26 14:09:02,530:INFO:Physical Core: 6
+2021-09-26 14:09:02,531:INFO:Logical Core: 12
+2021-09-26 14:09:02,531:INFO:Checking libraries
+2021-09-26 14:09:02,531:INFO:pd==1.1.4
+2021-09-26 14:09:02,531:INFO:numpy==1.19.5
+2021-09-26 14:09:02,531:INFO:sklearn==0.23.2
+2021-09-26 14:09:02,531:INFO:lightgbm==3.2.1
+2021-09-26 14:09:02,531:WARNING:catboost not found
+2021-09-26 14:09:02,532:WARNING:xgboost not found
+2021-09-26 14:09:02,993:INFO:mlflow==1.20.2
+2021-09-26 14:09:02,994:INFO:Checking Exceptions
+2021-09-26 14:09:02,994:INFO:Declaring global variables
+2021-09-26 14:09:02,994:INFO:USI: 0f4b
+2021-09-26 14:09:02,994:INFO:pycaret_globals: {'logging_param', 'transform_target_method_param', 'USI', 'imputation_regressor', 'y_train', 'create_model_container', '_ml_usecase', '_all_models', '_gpu_n_jobs_param', 'prep_pipe', 'X_test', 'y', '_all_models_internal', 'y_test', 'log_plots_param', 'exp_name_log', 'fold_shuffle_param', 'fold_generator', 'html_param', 'fix_imbalance_method_param', 'n_jobs_param', 'data_before_preprocess', 'display_container', 'imputation_classifier', 'iterative_imputation_iters_param', '_all_metrics', 'fix_imbalance_param', 'fold_param', 'X', 'gpu_param', 'experiment__', 'target_param', 'fold_groups_param_full', 'pycaret_globals', '_internal_pipeline', 'fold_groups_param', 'master_model_container', 'X_train', 'stratify_param', 'seed', '_available_plots', 'transform_target_param'}
+2021-09-26 14:09:02,994:INFO:Preparing display monitor
+2021-09-26 14:09:02,994:INFO:Importing libraries
+2021-09-26 14:09:02,994:INFO:Copying data for preprocessing
+2021-09-26 14:09:02,994:INFO:Declaring preprocessing parameters
+2021-09-26 14:09:02,995:INFO:Creating preprocessing pipeline
+2021-09-26 14:09:03,012:INFO:Preprocessing pipeline created successfully
+2021-09-26 14:09:03,012:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 14:09:03,012:INFO:Creating global containers
+2021-09-26 14:09:03,013:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 14:09:03,201:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:09:03,201:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:09:03,267:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:09:03,268:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:09:03,268:INFO:Creating grid variables
+2021-09-26 14:09:03,272:INFO:create_model_container: 0
+2021-09-26 14:09:03,272:INFO:master_model_container: 0
+2021-09-26 14:09:03,272:INFO:display_container: 1
+2021-09-26 14:09:03,276:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 14:09:03,276:INFO:setup() succesfully completed......................................
+2021-09-26 14:09:03,352:INFO:gpu_param set to False
+2021-09-26 14:09:03,432:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:09:03,432:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:10:34,526:INFO:PyCaret Supervised Module
+2021-09-26 14:10:34,526:INFO:ML Usecase: classification
+2021-09-26 14:10:34,526:INFO:version 2.3.4
+2021-09-26 14:10:34,526:INFO:Initializing setup()
+2021-09-26 14:10:34,526:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 14:10:34,526:INFO:Checking environment
+2021-09-26 14:10:34,526:INFO:python_version: 3.6.13
+2021-09-26 14:10:34,526:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 14:10:34,526:INFO:machine: x86_64
+2021-09-26 14:10:34,535:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 14:10:34,536:INFO:Memory: svmem(total=17179869184, available=5808271360, percent=66.2, used=9635491840, free=44408832, active=5767188480, inactive=5507215360, wired=3868303360)
+2021-09-26 14:10:34,536:INFO:Physical Core: 6
+2021-09-26 14:10:34,536:INFO:Logical Core: 12
+2021-09-26 14:10:34,536:INFO:Checking libraries
+2021-09-26 14:10:34,536:INFO:pd==1.1.4
+2021-09-26 14:10:34,536:INFO:numpy==1.19.5
+2021-09-26 14:10:34,536:INFO:sklearn==0.23.2
+2021-09-26 14:10:34,536:INFO:lightgbm==3.2.1
+2021-09-26 14:10:34,536:WARNING:catboost not found
+2021-09-26 14:10:34,537:WARNING:xgboost not found
+2021-09-26 14:10:34,767:INFO:mlflow==1.20.2
+2021-09-26 14:10:34,767:INFO:Checking Exceptions
+2021-09-26 14:10:34,767:INFO:Declaring global variables
+2021-09-26 14:10:34,767:INFO:USI: 813f
+2021-09-26 14:10:34,768:INFO:pycaret_globals: {'imputation_classifier', '_all_metrics', 'html_param', 'seed', '_ml_usecase', 'y_train', 'X', 'master_model_container', 'transform_target_method_param', 'data_before_preprocess', 'USI', '_gpu_n_jobs_param', 'exp_name_log', 'gpu_param', 'pycaret_globals', 'fold_groups_param_full', 'fix_imbalance_method_param', 'fold_generator', 'fold_groups_param', '_available_plots', '_all_models_internal', 'imputation_regressor', '_internal_pipeline', 'n_jobs_param', 'log_plots_param', 'logging_param', 'create_model_container', 'X_train', 'prep_pipe', 'experiment__', 'fold_param', 'X_test', 'target_param', '_all_models', 'y_test', 'transform_target_param', 'fold_shuffle_param', 'stratify_param', 'display_container', 'fix_imbalance_param', 'iterative_imputation_iters_param', 'y'}
+2021-09-26 14:10:34,768:INFO:Preparing display monitor
+2021-09-26 14:10:34,768:INFO:Importing libraries
+2021-09-26 14:10:34,768:INFO:Copying data for preprocessing
+2021-09-26 14:10:34,768:INFO:Declaring preprocessing parameters
+2021-09-26 14:10:34,769:INFO:Creating preprocessing pipeline
+2021-09-26 14:10:34,785:INFO:Preprocessing pipeline created successfully
+2021-09-26 14:10:34,785:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 14:10:34,785:INFO:Creating global containers
+2021-09-26 14:10:34,786:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 14:10:35,031:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:10:35,032:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:10:35,106:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:10:35,107:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:10:35,107:INFO:Creating grid variables
+2021-09-26 14:10:35,110:INFO:create_model_container: 0
+2021-09-26 14:10:35,110:INFO:master_model_container: 0
+2021-09-26 14:10:35,110:INFO:display_container: 1
+2021-09-26 14:10:35,115:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 14:10:35,115:INFO:setup() succesfully completed......................................
+2021-09-26 14:10:35,201:INFO:gpu_param set to False
+2021-09-26 14:10:35,286:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:10:35,286:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:12:00,428:INFO:PyCaret Supervised Module
+2021-09-26 14:12:00,428:INFO:ML Usecase: classification
+2021-09-26 14:12:00,428:INFO:version 2.3.4
+2021-09-26 14:12:00,428:INFO:Initializing setup()
+2021-09-26 14:12:00,428:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 14:12:00,428:INFO:Checking environment
+2021-09-26 14:12:00,428:INFO:python_version: 3.6.13
+2021-09-26 14:12:00,428:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 14:12:00,428:INFO:machine: x86_64
+2021-09-26 14:12:00,438:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 14:12:00,439:INFO:Memory: svmem(total=17179869184, available=5730349056, percent=66.6, used=9579405312, free=19075072, active=5717471232, inactive=5440671744, wired=3861934080)
+2021-09-26 14:12:00,439:INFO:Physical Core: 6
+2021-09-26 14:12:00,439:INFO:Logical Core: 12
+2021-09-26 14:12:00,439:INFO:Checking libraries
+2021-09-26 14:12:00,439:INFO:pd==1.1.4
+2021-09-26 14:12:00,439:INFO:numpy==1.19.5
+2021-09-26 14:12:00,439:INFO:sklearn==0.23.2
+2021-09-26 14:12:00,439:INFO:lightgbm==3.2.1
+2021-09-26 14:12:00,439:WARNING:catboost not found
+2021-09-26 14:12:00,439:WARNING:xgboost not found
+2021-09-26 14:12:00,659:INFO:mlflow==1.20.2
+2021-09-26 14:12:00,659:INFO:Checking Exceptions
+2021-09-26 14:12:00,659:INFO:Declaring global variables
+2021-09-26 14:12:00,659:INFO:USI: 36f6
+2021-09-26 14:12:00,659:INFO:pycaret_globals: {'USI', 'y', 'seed', '_internal_pipeline', 'imputation_classifier', 'data_before_preprocess', '_all_models', 'fold_shuffle_param', 'target_param', 'stratify_param', 'logging_param', 'prep_pipe', '_all_models_internal', 'fold_param', '_ml_usecase', '_available_plots', '_all_metrics', 'X_train', 'experiment__', 'html_param', 'fix_imbalance_method_param', 'y_test', 'n_jobs_param', 'y_train', 'transform_target_method_param', 'fold_generator', 'fold_groups_param', 'pycaret_globals', 'imputation_regressor', 'X', 'iterative_imputation_iters_param', 'fix_imbalance_param', 'X_test', 'gpu_param', '_gpu_n_jobs_param', 'create_model_container', 'master_model_container', 'display_container', 'transform_target_param', 'fold_groups_param_full', 'log_plots_param', 'exp_name_log'}
+2021-09-26 14:12:00,659:INFO:Preparing display monitor
+2021-09-26 14:12:00,659:INFO:Importing libraries
+2021-09-26 14:12:00,659:INFO:Copying data for preprocessing
+2021-09-26 14:12:00,659:INFO:Declaring preprocessing parameters
+2021-09-26 14:12:00,660:INFO:Creating preprocessing pipeline
+2021-09-26 14:12:00,673:INFO:Preprocessing pipeline created successfully
+2021-09-26 14:12:00,673:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 14:12:00,673:INFO:Creating global containers
+2021-09-26 14:12:00,674:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 14:12:00,838:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:12:00,838:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:12:00,901:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:12:00,901:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:12:00,901:INFO:Creating grid variables
+2021-09-26 14:12:00,904:INFO:create_model_container: 0
+2021-09-26 14:12:00,904:INFO:master_model_container: 0
+2021-09-26 14:12:00,904:INFO:display_container: 1
+2021-09-26 14:12:00,908:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 14:12:00,908:INFO:setup() succesfully completed......................................
+2021-09-26 14:12:00,987:INFO:gpu_param set to False
+2021-09-26 14:12:01,069:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:12:01,069:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:13:28,807:INFO:PyCaret Supervised Module
+2021-09-26 14:13:28,807:INFO:ML Usecase: classification
+2021-09-26 14:13:28,807:INFO:version 2.3.4
+2021-09-26 14:13:28,807:INFO:Initializing setup()
+2021-09-26 14:13:28,807:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 14:13:28,808:INFO:Checking environment
+2021-09-26 14:13:28,808:INFO:python_version: 3.6.13
+2021-09-26 14:13:28,808:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 14:13:28,808:INFO:machine: x86_64
+2021-09-26 14:13:28,816:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 14:13:28,817:INFO:Memory: svmem(total=17179869184, available=5741264896, percent=66.6, used=9522040832, free=19079168, active=5726388224, inactive=5518970880, wired=3795652608)
+2021-09-26 14:13:28,817:INFO:Physical Core: 6
+2021-09-26 14:13:28,817:INFO:Logical Core: 12
+2021-09-26 14:13:28,817:INFO:Checking libraries
+2021-09-26 14:13:28,817:INFO:pd==1.1.4
+2021-09-26 14:13:28,817:INFO:numpy==1.19.5
+2021-09-26 14:13:28,817:INFO:sklearn==0.23.2
+2021-09-26 14:13:28,817:INFO:lightgbm==3.2.1
+2021-09-26 14:13:28,818:WARNING:catboost not found
+2021-09-26 14:13:28,818:WARNING:xgboost not found
+2021-09-26 14:13:29,040:INFO:mlflow==1.20.2
+2021-09-26 14:13:29,040:INFO:Checking Exceptions
+2021-09-26 14:13:29,040:INFO:Declaring global variables
+2021-09-26 14:13:29,040:INFO:USI: fe53
+2021-09-26 14:13:29,040:INFO:pycaret_globals: {'fold_param', 'iterative_imputation_iters_param', '_all_metrics', 'X_train', '_gpu_n_jobs_param', 'fix_imbalance_method_param', 'X_test', 'logging_param', 'imputation_regressor', 'n_jobs_param', 'log_plots_param', 'fold_groups_param_full', 'fold_generator', 'gpu_param', 'master_model_container', 'transform_target_param', 'fold_groups_param', 'target_param', 'html_param', 'y', 'y_train', '_available_plots', 'imputation_classifier', 'USI', 'X', 'display_container', 'stratify_param', '_internal_pipeline', 'prep_pipe', 'y_test', 'exp_name_log', 'transform_target_method_param', 'seed', 'fix_imbalance_param', '_ml_usecase', 'experiment__', 'pycaret_globals', '_all_models', 'create_model_container', 'fold_shuffle_param', 'data_before_preprocess', '_all_models_internal'}
+2021-09-26 14:13:29,040:INFO:Preparing display monitor
+2021-09-26 14:13:29,040:INFO:Importing libraries
+2021-09-26 14:13:29,040:INFO:Copying data for preprocessing
+2021-09-26 14:13:29,040:INFO:Declaring preprocessing parameters
+2021-09-26 14:13:29,041:INFO:Creating preprocessing pipeline
+2021-09-26 14:13:29,052:INFO:Preprocessing pipeline created successfully
+2021-09-26 14:13:29,053:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 14:13:29,053:INFO:Creating global containers
+2021-09-26 14:13:29,053:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 14:13:29,216:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:13:29,216:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:13:29,279:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:13:29,279:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:13:29,280:INFO:Creating grid variables
+2021-09-26 14:13:29,282:INFO:create_model_container: 0
+2021-09-26 14:13:29,282:INFO:master_model_container: 0
+2021-09-26 14:13:29,282:INFO:display_container: 1
+2021-09-26 14:13:29,286:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 14:13:29,286:INFO:setup() succesfully completed......................................
+2021-09-26 14:13:29,362:INFO:gpu_param set to False
+2021-09-26 14:13:29,437:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:13:29,437:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:13:38,062:INFO:PyCaret Supervised Module
+2021-09-26 14:13:38,063:INFO:ML Usecase: classification
+2021-09-26 14:13:38,063:INFO:version 2.3.4
+2021-09-26 14:13:38,063:INFO:Initializing setup()
+2021-09-26 14:13:38,063:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 14:13:38,063:INFO:Checking environment
+2021-09-26 14:13:38,063:INFO:python_version: 3.6.13
+2021-09-26 14:13:38,063:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 14:13:38,064:INFO:machine: x86_64
+2021-09-26 14:13:38,075:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 14:13:38,076:INFO:Memory: svmem(total=17179869184, available=5786402816, percent=66.3, used=9529806848, free=47828992, active=5742448640, inactive=5545426944, wired=3787358208)
+2021-09-26 14:13:38,076:INFO:Physical Core: 6
+2021-09-26 14:13:38,076:INFO:Logical Core: 12
+2021-09-26 14:13:38,076:INFO:Checking libraries
+2021-09-26 14:13:38,076:INFO:pd==1.1.4
+2021-09-26 14:13:38,076:INFO:numpy==1.19.5
+2021-09-26 14:13:38,076:INFO:sklearn==0.23.2
+2021-09-26 14:13:38,076:INFO:lightgbm==3.2.1
+2021-09-26 14:13:38,076:WARNING:catboost not found
+2021-09-26 14:13:38,076:WARNING:xgboost not found
+2021-09-26 14:13:38,307:INFO:mlflow==1.20.2
+2021-09-26 14:13:38,307:INFO:Checking Exceptions
+2021-09-26 14:13:38,307:INFO:Declaring global variables
+2021-09-26 14:13:38,307:INFO:USI: e0b0
+2021-09-26 14:13:38,307:INFO:pycaret_globals: {'experiment__', 'data_before_preprocess', 'fold_groups_param', 'y', 'target_param', '_all_metrics', 'logging_param', '_all_models', 'n_jobs_param', 'fold_param', 'log_plots_param', '_available_plots', 'fold_shuffle_param', 'imputation_classifier', '_ml_usecase', 'y_train', 'stratify_param', 'iterative_imputation_iters_param', 'X', 'gpu_param', 'create_model_container', 'X_test', '_all_models_internal', 'imputation_regressor', 'pycaret_globals', 'seed', '_gpu_n_jobs_param', 'exp_name_log', 'html_param', 'prep_pipe', 'display_container', 'fix_imbalance_param', 'master_model_container', 'y_test', '_internal_pipeline', 'fold_groups_param_full', 'transform_target_param', 'transform_target_method_param', 'fold_generator', 'fix_imbalance_method_param', 'X_train', 'USI'}
+2021-09-26 14:13:38,307:INFO:Preparing display monitor
+2021-09-26 14:13:38,307:INFO:Importing libraries
+2021-09-26 14:13:38,307:INFO:Copying data for preprocessing
+2021-09-26 14:13:38,308:INFO:Declaring preprocessing parameters
+2021-09-26 14:13:38,309:INFO:Creating preprocessing pipeline
+2021-09-26 14:13:38,321:INFO:Preprocessing pipeline created successfully
+2021-09-26 14:13:38,321:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 14:13:38,321:INFO:Creating global containers
+2021-09-26 14:13:38,322:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 14:13:38,490:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:13:38,490:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:13:38,551:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:13:38,552:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:13:38,552:INFO:Creating grid variables
+2021-09-26 14:13:38,554:INFO:create_model_container: 0
+2021-09-26 14:13:38,554:INFO:master_model_container: 0
+2021-09-26 14:13:38,554:INFO:display_container: 1
+2021-09-26 14:13:38,558:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 14:13:38,558:INFO:setup() succesfully completed......................................
+2021-09-26 14:13:38,634:INFO:gpu_param set to False
+2021-09-26 14:13:38,712:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:13:38,712:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:41:39,542:INFO:PyCaret Supervised Module
+2021-09-26 14:41:39,542:INFO:ML Usecase: classification
+2021-09-26 14:41:39,542:INFO:version 2.3.4
+2021-09-26 14:41:39,542:INFO:Initializing setup()
+2021-09-26 14:41:39,543:INFO:setup(display=None, profile_kwargs=None, profile=False, verbose=False, silent=True, log_data=False, log_profile=False, log_plots=False, experiment_name=None, log_experiment=False, session_id=None, html=True, custom_pipeline=None, use_gpu=False, n_jobs=-1, fold_groups=None, fold_shuffle=False, fold=10, fold_strategy=stratifiedkfold, data_split_stratify=False, data_split_shuffle=True, transform_target_method=box-cox, transform_target=False, fix_imbalance_method=None, fix_imbalance=False, interaction_threshold=0.01, feature_ratio=False, feature_interaction=False, feature_selection_method=classic, feature_selection_threshold=0.8, feature_selection=False, group_names=None, group_features=None, polynomial_threshold=0.1, trigonometry_features=False, polynomial_degree=2, polynomial_features=False, cluster_iter=20, create_clusters=False, remove_perfect_collinearity=True, multicollinearity_threshold=0.9, remove_multicollinearity=False, outliers_threshold=0.05, remove_outliers=False, bin_numeric_features=None, rare_level_threshold=0.1, combine_rare_levels=False, ignore_low_variance=False, pca_components=None, pca_method=linear, pca=False, unknown_categorical_method=least_frequent, handle_unknown_categorical=True, transformation_method=yeo-johnson, transformation=False, normalize_method=zscore, normalize=False, ignore_features=None, date_features=None, numeric_iterative_imputer=lightgbm, numeric_imputation=mean, numeric_features=None, high_cardinality_method=frequency, high_cardinality_features=None, ordinal_features=None, categorical_iterative_imputer=lightgbm, categorical_imputation=constant, categorical_features=None, iterative_imputation_iters=5, imputation_type=simple, preprocess=True, test_data=    Unnamed: 0  Unnamed: 0.1  Age  DistanceFromHome Attrition
+0           83           636   35                25       Yes
+1           53          1024   47                 2        No
+2           70           884   40                10        No
+3           45          1431   32                 1        No
+4           44           709   31                 9       Yes
+5           39           268   45                20        No
+6           22           941   30                 6        No
+7           80          1421   47                 1        No
+8           10           712   33                13        No
+9            0          1308   38                 2        No
+10          18           103   34                 6        No
+11          30           913   45                 2       Yes
+12          73            50   48                 1       Yes
+13          33           129   49                20        No
+14          90           992   39                25        No
+15           4          1435   44                 1        No
+16          76           742   50                 9        No
+17          77          1108   35                 1        No
+18          12           321   31                 7        No
+19          31          1455   40                 2        No
+20          55          1155   39                 3        No
+21          88          1015   34                 1        No
+22          26           830   41                12        No
+23          42            72   31                 1        No
+24          69          1003   25                 1        No
+25          15           784   38                17        No
+26          40           273   37                 6        No
+27          96           739   27                 2        No
+28           9           763   34                10        No
+29          72           626   32                 8        No
+30          11            44   30                 1        No
+31          47           608   55                 2       Yes
+32          85           735   48                 6        No
+33          28           931   30                 9        No
+34          93            65   55                 8        No
+35           5          1118   26                 3        No
+36          66           882   36                 1        No
+37          65          1401   55                26        No
+38          35           826   38                 1        No
+39          16           328   33                10        No, train_size=0.7, available_plots={'parameter': 'Hyperparameters', 'auc': 'AUC', 'confusion_matrix': 'Confusion Matrix', 'threshold': 'Threshold', 'pr': 'Precision Recall', 'error': 'Prediction Error', 'class_report': 'Class Report', 'rfe': 'Feature Selection', 'learning': 'Learning Curve', 'manifold': 'Manifold Learning', 'calibration': 'Calibration Curve', 'vc': 'Validation Curve', 'dimension': 'Dimensions', 'feature': 'Feature Importance', 'feature_all': 'Feature Importance (All)', 'boundary': 'Decision Boundary', 'lift': 'Lift Chart', 'gain': 'Gain Chart', 'tree': 'Decision Tree', 'ks': 'KS Statistic Plot'}, ml_usecase=classification, target=Attrition)
+2021-09-26 14:41:39,543:INFO:Checking environment
+2021-09-26 14:41:39,543:INFO:python_version: 3.6.13
+2021-09-26 14:41:39,543:INFO:python_build: ('default', 'Feb 23 2021 12:58:59')
+2021-09-26 14:41:39,543:INFO:machine: x86_64
+2021-09-26 14:41:39,554:INFO:platform: Darwin-19.6.0-x86_64-i386-64bit
+2021-09-26 14:41:39,556:INFO:Memory: svmem(total=17179869184, available=5986557952, percent=65.2, used=9740861440, free=18599936, active=5971263488, inactive=5568249856, wired=3769597952)
+2021-09-26 14:41:39,556:INFO:Physical Core: 6
+2021-09-26 14:41:39,556:INFO:Logical Core: 12
+2021-09-26 14:41:39,556:INFO:Checking libraries
+2021-09-26 14:41:39,556:INFO:pd==1.1.4
+2021-09-26 14:41:39,556:INFO:numpy==1.19.5
+2021-09-26 14:41:39,556:INFO:sklearn==0.23.2
+2021-09-26 14:41:39,556:INFO:lightgbm==3.2.1
+2021-09-26 14:41:39,556:WARNING:catboost not found
+2021-09-26 14:41:39,556:WARNING:xgboost not found
+2021-09-26 14:41:40,040:INFO:mlflow==1.20.2
+2021-09-26 14:41:40,040:INFO:Checking Exceptions
+2021-09-26 14:41:40,040:INFO:Declaring global variables
+2021-09-26 14:41:40,040:INFO:USI: a10b
+2021-09-26 14:41:40,040:INFO:pycaret_globals: {'transform_target_param', 'data_before_preprocess', 'fix_imbalance_method_param', 'y', 'logging_param', 'n_jobs_param', '_internal_pipeline', 'html_param', '_available_plots', 'fold_param', 'pycaret_globals', 'gpu_param', 'fold_generator', 'exp_name_log', 'fold_groups_param_full', 'display_container', 'X_test', 'fold_shuffle_param', 'create_model_container', '_gpu_n_jobs_param', 'seed', 'transform_target_method_param', 'stratify_param', 'imputation_regressor', '_ml_usecase', 'fix_imbalance_param', 'fold_groups_param', 'y_train', 'y_test', 'master_model_container', 'USI', '_all_models_internal', 'prep_pipe', 'experiment__', '_all_models', 'log_plots_param', 'iterative_imputation_iters_param', 'X', 'imputation_classifier', 'X_train', '_all_metrics', 'target_param'}
+2021-09-26 14:41:40,040:INFO:Preparing display monitor
+2021-09-26 14:41:40,040:INFO:Importing libraries
+2021-09-26 14:41:40,040:INFO:Copying data for preprocessing
+2021-09-26 14:41:40,041:INFO:Declaring preprocessing parameters
+2021-09-26 14:41:40,042:INFO:Creating preprocessing pipeline
+2021-09-26 14:41:40,065:INFO:Preprocessing pipeline created successfully
+2021-09-26 14:41:40,065:ERROR:(Process Exit): setup has been interupted with user command 'quit'. setup must rerun.
+2021-09-26 14:41:40,065:INFO:Creating global containers
+2021-09-26 14:41:40,067:INFO:Internal pipeline: Pipeline(memory=None, steps=[('empty_step', 'passthrough')], verbose=False)
+2021-09-26 14:41:40,263:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:41:40,264:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:41:40,332:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:41:40,333:WARNING:Couldn't import catboost.CatBoostClassifier
+2021-09-26 14:41:40,333:INFO:Creating grid variables
+2021-09-26 14:41:40,335:INFO:create_model_container: 0
+2021-09-26 14:41:40,335:INFO:master_model_container: 0
+2021-09-26 14:41:40,335:INFO:display_container: 1
+2021-09-26 14:41:40,339:INFO:Pipeline(memory=None,
+         steps=[('dtypes',
+                 DataTypes_Auto_infer(categorical_features=[],
+                                      display_types=False, features_todrop=[],
+                                      id_columns=[],
+                                      ml_usecase='classification',
+                                      numerical_features=[], target='Attrition',
+                                      time_features=[])),
+                ('imputer',
+                 Simple_Imputer(categorical_strategy='not_available',
+                                fill_value_categorical=None,
+                                fill_value_numerical=None,
+                                numeric_s...
+                ('scaling', 'passthrough'), ('P_transform', 'passthrough'),
+                ('binn', 'passthrough'), ('rem_outliers', 'passthrough'),
+                ('cluster_all', 'passthrough'),
+                ('dummy', Dummify(target='Attrition')),
+                ('fix_perfect', Remove_100(target='Attrition')),
+                ('clean_names', Clean_Colum_Names()),
+                ('feature_select', 'passthrough'), ('fix_multi', 'passthrough'),
+                ('dfs', 'passthrough'), ('pca', 'passthrough')],
+         verbose=False)
+2021-09-26 14:41:40,339:INFO:setup() succesfully completed......................................
+2021-09-26 14:41:40,415:INFO:gpu_param set to False
+2021-09-26 14:41:40,497:WARNING:Couldn't import xgboost.XGBClassifier
+2021-09-26 14:41:40,497:WARNING:Couldn't import catboost.CatBoostClassifier
