@@ -9,7 +9,7 @@ import sklearn
 import os
 import pickle
 import task
-import Task_Evaluator
+import task_evaluator
 
 ID_COLUMNS = ["Task ID", "SD Generator Path", "Classifier Name", "Sampling Method", "Run"]
 
@@ -17,7 +17,7 @@ ID_COLUMNS = ["Task ID", "SD Generator Path", "Classifier Name", "Sampling Metho
 # ex [taskId, /generator, catboost, "Original X samples" or "uniform" or "baseline"]
 
 def benchmark(tasks, metrics=task_evaluator.CLASSIFICATION_METRICS, agnostic_metrics=False,
-            output_path='results/', save_results=True):
+            output_path='results/'):
     """Run benchmark testing on a set of tasks. Return detailed results of each run stored in a
     DataFrame object.
     Args:
@@ -39,23 +39,46 @@ def benchmark(tasks, metrics=task_evaluator.CLASSIFICATION_METRICS, agnostic_met
         pd.DataFrame:
             benchmarking results in detail.
     """
+    results = []
+    i = 0
+    for task in tasks:
+        i+=1
+        evaluator = task_evaluator.Task_Evaluator(task)
+        results.append(evaluator.evaluate_task(metrics=metrics))
+    columns = ID_COLUMNS + metrics
+    result_df = pd.DataFrame.from_records(results, columns=columns)
+
     if output_path is not None:
         if not os.path.exists(output_path):
             os.mkdir(output_path)
-
-    performance = []
-    for task in tasks:
-        if output_path is not None:
-            task_output_path = os.path.join(output_path, task.task_id) #TODO consider task level csvs rather than one big csv
-        else:
-            task_output_path = None
-        evaluator = Task_Evaluator(task)
-        performance.extend(evaluator.evaluate_task(metrics=metrics))
-    columns = ID_COLUMNS + metrics
-    result_df = pd.DataFrame.from_records(performance, columns=columns)
-
-    if output_path is not None and save_results:
-        result_df.to_csv(os.path.join(output_path, 'details.csv'))
+        result_df.to_csv(os.path.join(output_path, 'results.csv'))
 
     return result_df
 
+def _summary_sampling_method(metric, result_df, output_dir):
+    """
+    returns dataframe of top row (sorted by metric) for each sampling_method in result_df.
+
+    stores output in output_dir
+    """
+
+def _summary_classifier(metric, result_df, output_dir):
+    """
+    returns dataframe of top row (sorted by metric) for each classifier in result_df.
+
+    stores output in output_dir
+    """
+
+def _summary_generator(metric, result_df, output_dir):
+    """
+    returns dataframe of top row (sorted by metric) for each generator in result_df.
+
+    stores output in output_dir
+    """
+
+def _summary_top_n(metric, result_df, output_dir, n):
+    """
+    returns dataframe of top n rows in result_df sorted by metric.
+
+    stores output in output_dir
+    """

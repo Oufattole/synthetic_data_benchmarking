@@ -58,6 +58,7 @@ class TestTask(unittest.TestCase):
             self.assertIn(each.path_to_generator, generator_paths)
         shutil.rmtree(output_dir) 
         os.mkdir(output_dir)   
+        
     def test_sampling_tasks(self):
         sampling_methods = task.SAMPLING_METHODS
         all_expected = ["baseline", "uniform", "original_0", "original_1", "original_2"]

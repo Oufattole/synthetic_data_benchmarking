@@ -10,7 +10,7 @@ import os
 from sampler import Sampler
 import task
 
-CLASSIFICATION_METRICS = ['auc', 'f1', 'recall', 'precision', 'accuracy', 'support']
+CLASSIFICATION_METRICS = ['auc', 'f1', 'recall', 'precision', 'accuracy']
 
 class Task_Evaluator():
     def __init__(self, task):
@@ -43,7 +43,9 @@ class Task_Evaluator():
         predictions = self._classify(combined_data)
         ground_truth = predictions[self.task.target]
         classifier_predictions = predictions["Label"]
-        classifier_score = predictions["Score"]
+        classifier_score = None
+        if "Score" in predictions.columns:
+            classifier_score = predictions["Score"]
         scores = self._get_scores(ground_truth, classifier_predictions, classifier_score)
         # make dictionary of metric name to score
         metric_to_score = {metric:score for metric, score in zip(CLASSIFICATION_METRICS, scores)}
@@ -58,23 +60,22 @@ class Task_Evaluator():
     @classmethod
     def _get_scores(self, ground_truth, classifier_predictions, classifier_score):
         labels = sorted(ground_truth.unique())
-        binary = len(labels) == 2
         
         precision_avg, recall_avg, f1_avg, _ = sklearn.metrics.precision_recall_fscore_support(ground_truth, classifier_predictions, average="macro", labels = labels)
         precision_label, recall_label, f1_label, support = sklearn.metrics.precision_recall_fscore_support(ground_truth, classifier_predictions, labels = labels)
         accuracy = sklearn.metrics.accuracy_score(ground_truth, classifier_predictions)
         auc = None
-        if binary:
-            auc = sklearn.metrics.roc_auc_score(ground_truth, classifier_score)
+        if not classifier_score is None:
+            auc = sklearn.metrics.roc_auc_score(ground_truth, classifier_score, average='macro', multi_class="ovr")
 
-        def convert_labels_lists_to_dict(label_scores):
-            scores = {label:score for label, score in zip(labels,label_scores)}
-            return scores
+        # def convert_labels_lists_to_dict(label_scores):
+        #     scores = {label:score for label, score in zip(labels,label_scores)}
+        #     return scores
 
-        precision = [precision_avg, convert_labels_lists_to_dict(precision_label)]
-        recall = [recall_avg, convert_labels_lists_to_dict(recall_label)]
-        f1 = [f1_avg, convert_labels_lists_to_dict(f1_label)]
-        support = convert_labels_lists_to_dict(support)
+        precision = precision_avg # label specific: convert_labels_lists_to_dict(precision_label)
+        recall = recall_avg # label specific: convert_labels_lists_to_dict(recall_label)
+        f1 = f1_avg # label convert_labels_lists_to_dict(f1_label)
+        # support = convert_labels_lists_to_dict(support)
 
         return [auc, f1, recall, precision, accuracy, support]
 
@@ -84,6 +85,7 @@ class Task_Evaluator():
         task_output_dir = self.task.output_dir
         classifier_file_name = f"classifier_{self.task.pycaret_model}"
         classifier_output_path = os.path.join(task_output_dir, classifier_file_name)
+        print(classifier_output_path)
         save_model(classifier_model, classifier_output_path)
 
     def _classify(self, combined_data):

@@ -71,6 +71,58 @@ class TestTaskEvauator(unittest.TestCase):
         result = evaluator.evaluate_task()
         sampling_methods = result[3]
         self.assertEqual(sampling_methods, 'uniform')
+    
+    def test_get_scores(self):
+        # ground_truth = pd.Series({1:"No",2:"No",3:"Yes",4:"Maybe"})
+        # classifier_predictions = pd.Series({1:"No",2:"No",3:"No",4:"No"})
+        # classifier_scores = pd.Series({1:.6,2:.6,3:.6,4:.6})
+        # auc, f1, recall, precision, accuracy, support = task_evaluator.Task_Evaluator._get_scores(ground_truth, classifier_predictions, classifier_scores)
+
+        # self.assertAlmostEqual(1/3, recall[0])
+        # self.assertEqual({'Maybe': 0.0, 'No': 0.5, 'Yes': 0.0}, precision[1])
+        # self.assertEqual({'Maybe': 0.0, 'No': 1.0, 'Yes': 0.0}, recall[1])
+        # self.assertEqual({'Maybe': 1, 'No': 2, 'Yes': 1},support)
+        # self.assertEqual(auc, None)
+
+
+        # ground_truth = pd.Series({1:"No",2:"No",3:"Yes",4:"Yes"})
+        # classifier_predictions = pd.Series({1:"No",2:"No",3:"No",4:"No"})
+        # classifier_scores = pd.Series({1:.6,2:.6,3:.6,4:.6})
+        # auc, f1, recall, precision, accuracy, support = task_evaluator.Task_Evaluator._get_scores(ground_truth, classifier_predictions, classifier_scores)
+
+        # self.assertAlmostEqual(1/2, recall[0])
+        # self.assertEqual({'No': 0.5, 'Yes': 0.0}, precision[1])
+        # self.assertEqual({'No': 1.0, 'Yes': 0.0}, recall[1])
+        # self.assertEqual({'No': 2, 'Yes': 2}, support)
+        # self.assertEqual(auc, .5)
+        path_to_generator = "generators/default_gaussain_copula.pkl"
+        test_task = task.Task(task_id="36_none_baseline_svm_0", train_dataset="data/train.csv",
+                    test_dataset="data/test.csv", target="Attrition", path_to_generator=path_to_generator,
+                 sampling_method_id="baseline", pycaret_model="lr", run_num=0)
+        evaluator = task_evaluator.Task_Evaluator(test_task)
+        df = evaluator.train_data
+        for i in range(10):
+            df2 = {column:i for column in df.columns}
+            df2[df.columns[-1]] = "Maybe"
+            df = df.append(df2, ignore_index = True)
+        # print(original_data.columns)
+        # df = pd.concat([pd.DataFrame([i, i, i, i, "Maybe"],
+        #     columns=original_data.columns, ignore_index=True) for i in range(10)])
+        evaluator.train_data = df
+        # TODO fix AUC here, then check benchmarking outputs results, create aggregation functions, then benchmark
+        # evaluator.train_data = pd.concat()
+        result = evaluator.evaluate_task()
+        self.assertTrue(not result[0] is None)
+
+    def test_svm_classifier(self):
+        #TestTaskEvauator.test_svm_classifier
+        path_to_generator = "generators/default_gaussain_copula.pkl"
+        test_task = task.Task(task_id="36_none_baseline_svm_0", train_dataset="data/train.csv",
+                    test_dataset="data/test.csv", target="Attrition", path_to_generator=path_to_generator,
+                 sampling_method_id="baseline", pycaret_model="svm", run_num=0)
+        evaluator = task_evaluator.Task_Evaluator(test_task)
+        result = evaluator.evaluate_task()
+        
 
 if __name__ == '__main__':
     unittest.main()

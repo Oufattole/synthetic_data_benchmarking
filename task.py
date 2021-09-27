@@ -217,7 +217,7 @@ def create_tasks(train_dataset="data/train.csv",
         task_instance = Task(task_id=task_id, train_dataset=train_dataset,
                     test_dataset=test_dataset, target=target,
                     path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
-                    pycaret_model=classifier, run_num=run_num, output_dir=output_dir)
+                    pycaret_model=classifier, run_num=run_num, output_dir=task_output_dir)
         
         if output_dir is not None:
             task_instance.save_as(os.path.join(task_output_dir, 'meta.json'))
