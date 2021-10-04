@@ -72,17 +72,16 @@ class Sampler():
                 conditions = {
                 target : class_name
                 } 
-                try:
-                    data = self.generator.sample(sample_size, conditions=conditions)
-                    all_sampled_data.append(data)
-                except ValueError as e: # handle case where no valid rows could be generated
-                    error_to_handle_msg = "No valid rows could be generated with the given conditions."
-                    if error_to_handle_msg in str(e):
-                        print("################################################################")
-                        print(e)#TODO log this case
-                        print(f"column_value that couldn't be generated: {class_name}")
-                    else:
-                        raise e
+                data = self.generator.sample(sample_size, conditions=conditions)
+                all_sampled_data.append(data)
+                # except ValueError as e: # handle case where no valid rows could be generated
+                #     error_to_handle_msg = "No valid rows could be generated with the given conditions."
+                #     if error_to_handle_msg in str(e):
+                #         print("################################################################")
+                #         print(e)#TODO log this case
+                #         print(f"column_value that couldn't be generated: {class_name}")
+                #     else:
+                #         raise e
         if len(all_sampled_data):
             synthetic_data = pd.concat(all_sampled_data)
             score_aggregate = evaluate(synthetic_data, self.train_data, aggregate=True)

@@ -17,6 +17,7 @@ class TestSampler(unittest.TestCase):
         train_data_path = "data/train.csv"
         test_data_path = "data/test.csv"
         target = "Attrition"
+        self.target = target
         self.train_data = pd.read_csv(train_data_path)
         run_num = 1
         classifier = "lr"
@@ -80,7 +81,8 @@ class TestSampler(unittest.TestCase):
         task_uniform = self.make_task("uniform")
         sampler = Sampler(task_uniform, self.train_data, self.generator)
         combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
-        self.assertEqual(102, combined_data.shape[0])
+        yes_count, no_count = combined_data[self.target].value_counts().to_list()
+        self.assertEqual(yes_count, no_count)
         self.assertEqual("uniform", sampling_method_info)
         self.assertIsInstance(score_aggregate, float)
         expected_synth_data_path = os.path.join(task_uniform.output_dir, "synthetic_data.csv")
@@ -93,12 +95,12 @@ class TestSampler(unittest.TestCase):
         self.generator = sdv.sdv.SDV.load(generator_path)
         
         sampler = Sampler(task_uniform, self.train_data, self.generator)
-        combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
-        self.assertEqual(60, combined_data.shape[0])
-        self.assertEqual("uniform", sampling_method_info)
-        self.assertEqual(score_aggregate, None)
-        expected_synth_data_path = os.path.join(task_uniform.output_dir, "synthetic_data.csv")
-        self.assertFalse(os.path.exists(expected_synth_data_path))
+        with self.assertRaises(Exception) as context:
+            combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
+        error_msg = "No valid rows could be generated with the given conditions."
+        self.assertTrue(error_msg in str(context.exception))
+        
+        
         
 
 if __name__ == '__main__':
