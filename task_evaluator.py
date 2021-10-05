@@ -1,4 +1,3 @@
-from pycaret.classification import * # Preprocessing, modelling, interpretation, deployment...
 import pandas as pd # Basic data manipulation
 from sklearn.model_selection import train_test_split # Data split
 from sdv.tabular import CopulaGAN, GaussianCopula, CTGAN, TVAE # Synthetic data
@@ -9,6 +8,8 @@ import sklearn
 import os
 from sampler import Sampler
 import task
+from pycaret import classification
+from pycaret import regression
 
 CLASSIFICATION_METRICS = ['auc', 'f1', 'recall', 'precision', 'accuracy']
 
@@ -86,24 +87,28 @@ class Task_Evaluator():
         classifier_file_name = f"classifier_{self.task.pycaret_model}"
         classifier_output_path = os.path.join(task_output_dir, classifier_file_name)
         print(classifier_output_path)
-        save_model(classifier_model, classifier_output_path)
+        classification.save_model(classifier_model, classifier_output_path)
 
     def _classify(self, combined_data):
         #TODO, check for ordinal and categorical features
         self._classifier_setup(combined_data)
         # Train classifier
-        classifier = create_model(self.task.pycaret_model, verbose=False)
+        classifier = classification.create_model(self.task.pycaret_model, verbose=False)
         # Store Classifier
         if self.task.output_dir:
             self._store_classifier(classifier)
         # Predict on Test set
-        predictions = predict_model(classifier, verbose=False) # TODO get raw_scores for AUC
+        predictions = classification.predict_model(classifier, verbose=False) # TODO get raw_scores for AUC
         return predictions
 
     def _classifier_setup(self, combined_data):
-        setup(combined_data.sample(frac=1), #shuffles the data
+        classification.setup(combined_data.sample(frac=1), #shuffles the data
             target = self.task.target, 
             test_data = self.test_data,
             fold_strategy = "kfold", # TODO allow more strategies as hyperparam
             silent = True,
             verbose = False)
+    def _regression(self, combined_data):
+        pass
+    def _regression_setup(self, combined_data):
+        pass

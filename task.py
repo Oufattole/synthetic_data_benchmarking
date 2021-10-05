@@ -2,8 +2,9 @@ import json
 import os
 import pickle
 import shutil
-from pycaret.classification import * # Preprocessing, modelling, interpretation, deployment...
 import pandas as pd
+from pycaret import classification
+from pycaret import regression
 
 ORIGINAL_STEPS = 3
 SAMPLING_METHODS = ["all", "original", "uniform", "baseline"]
@@ -29,11 +30,10 @@ def _get_sample_method_ids_no_baseline(sample_method):
 
 class Task:
     """A class that stores the configurations to a prediction task."""
-
     def __init__(self, task_id=None, train_dataset=None,
                  test_dataset=None, target=None, path_to_generator=None,
                  sampling_method_id=None, pycaret_model=None, run_num=None,
-                 output_dir=None):
+                 output_dir=None, is_regression=False):
         """Create a task configuration object from a list of settings.
         Args:
             task_id (str):
@@ -52,6 +52,8 @@ class Task:
                 the pycaret classifier ID, this classifier will be trained and tested
             run_num (int):
                 the number of runs for the classifier and synthetic data generator.
+            is_regression (bool):
+                perform regression to predict target (default is classification)
         """
         self._task_id = task_id
         self._train_dataset = train_dataset
@@ -62,6 +64,7 @@ class Task:
         self._pycaret_model = pycaret_model
         self._run_num = run_num
         self._output_dir = output_dir
+        self._is_regression = is_regression
 
     def __str__(self):
         description_str = ""
@@ -147,11 +150,16 @@ class Task:
     def output_dir(self):
         return self._output_dir
 
+    @property
+    def is_regression(self):
+        return self._is_regression
+
 
 def create_tasks(train_dataset="data/train.csv",
                 test_dataset="data/test.csv", target="TARGET",
                 path_to_generators = "generators/", pycaret_models=None,
-                task_sampling_method="all", run_num=1, output_dir=None):
+                task_sampling_method="all", run_num=1, output_dir=None,
+                is_regression=False):
     """Create a list of benchmark task objects.
     
     Args:
@@ -180,16 +188,19 @@ def create_tasks(train_dataset="data/train.csv",
     """
     task_num = 0
     tasks = []
-
+    
     if pycaret_models is None:
         train_data = pd.read_csv(train_dataset)
         test_data = pd.read_csv(test_dataset)
-        setup(train_data,
+        pycaret_functions = classification
+        if is_regression:
+            pycaret_functions = regression
+        pycaret_functions.setup(train_data,
             target = target, 
             test_data = test_data,
             silent=True,
             verbose=False)
-        pycaret_models = models().index.to_list()
+        pycaret_models = pycaret_functions.models().index.to_list()
 
     generator_paths = []
     generator_name = {}
@@ -208,7 +219,9 @@ def create_tasks(train_dataset="data/train.csv",
 
     def create_task(gen_name, task_num, classifier, generator_path,
         sampling_method_id, run_num, output_dir):
-        task_id = "{}_{}_{}_{}_{}".format(task_num, gen_name, sampling_method_id, classifier, run_num)
+        task_id = "{}_{}_{}_{}_{}".format(task_num, gen_name, 
+                                        sampling_method_id, classifier,
+                                        run_num, is_regression=is_regression)
         task_output_dir = None
         if output_dir is not None:
             task_output_dir = os.path.join(output_dir, task_id)

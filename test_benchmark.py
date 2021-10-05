@@ -19,7 +19,6 @@ class TestBenchmark(unittest.TestCase):
         metrics = ["accuracy"]
         table = benchmark.Results_Table(None, tasks, metrics)
         task_id = "3_default_tvae_original_0_lr_0"
-        
         #initialization
         result_df = table.get_df()
         check = result_df.loc[result_df['Task ID'] == task_id]
@@ -44,6 +43,7 @@ class TestBenchmark(unittest.TestCase):
         entry = check["Status"].to_list()[0]
         expected = benchmark.Status.SUCCESS
         self.assertEqual(entry,expected)
+
     def test_benchmark(self):
         # create tasks
         results_output_path = "results/"
@@ -54,9 +54,10 @@ class TestBenchmark(unittest.TestCase):
                     path_to_generators = path_to_generators, pycaret_models=["lr"],
                     task_sampling_method="all", run_num=1, output_dir=task_output_path)
         # run benchmark on tasks
-        results = benchmark.benchmark(tasks, agnostic_metrics=False, output_path=results_output_path)
+        result_df, failed_tasks = benchmark.benchmark(tasks, agnostic_metrics=False, output_path=results_output_path)
         #check results
-        self.assertEqual(len(tasks), results.shape[0])
+        self.assertEqual(len(tasks), result_df.shape[0])
+        self.assertEqual(1, len(failed_tasks))
         self.assertTrue(os.path.exists(os.path.join(results_output_path, 'results.csv')))
 
     def test_summary(self):
@@ -71,12 +72,12 @@ class TestBenchmark(unittest.TestCase):
         metric = "c1"
         output = benchmark.summarize_top_n(3, metric, result_df, output_dir=None)
         self.assertEqual(output["c1"].tolist(), [988,742,595])
-        output = benchmark.summarize_sampling_method(3, metric, result_df, output_dir=None)
+        output = benchmark.summarize_sampling_method(metric, result_df, output_dir=None)
         self.assertEqual(output["c1"].tolist(), [988,742,510])
-        output = benchmark.summarize_classifier(3, metric, result_df, output_dir=None)
-        self.assertEqual(output["c1"].tolist(), [988,742,510])
-        output = benchmark.summarize_generator(3, metric, result_df, output_dir=None)
-        self.assertEqual(output["c1"].tolist(), [988,595,510])
+        output = benchmark.summarize_classifier(metric, result_df, output_dir=None)
+        self.assertEqual(output["c1"].tolist(), [988, 742, 510, 382, 98])
+        output = benchmark.summarize_generator(metric, result_df, output_dir=None)
+        self.assertEqual(output["c1"].tolist(), [988, 595, 510, 382, 106])
     
 
 

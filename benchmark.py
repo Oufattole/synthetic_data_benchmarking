@@ -10,6 +10,7 @@ import os
 import pickle
 import task
 import task_evaluator
+import numpy as np
 
 ID_COLUMNS = ["Task ID", "SD Generator Path", "Classifier Name", "Sampling Method", "Run", "Status"]
 
@@ -30,7 +31,7 @@ class Results_Table():
         columns = ID_COLUMNS + metrics
         self.columns = columns
         results = [[task.task_id, task.path_to_generator, task.pycaret_model,
-            task.sampling_method_id, task.run_num, Status.PENDING] + [""]*len(metrics) for task in tasks]
+            task.sampling_method_id, task.run_num, Status.PENDING] + [np.nan]*len(metrics) for task in tasks]
         result_df = pd.DataFrame(results, columns=columns)
         self.result_df = result_df
         self.output_path = os.path.join(output_dir, 'results.csv') if output_dir else None
@@ -74,7 +75,7 @@ def benchmark(tasks, metrics=task_evaluator.CLASSIFICATION_METRICS, agnostic_met
     failed_tasks = []
     results = []
     results_table = None
-    results_table = Results_Table(tasks, output_dir)
+    results_table = Results_Table(output_path, tasks, metrics)
     for task in tasks:
         results_table.update_row_status(task.task_id, Status.RUNNING)
         evaluator = task_evaluator.Task_Evaluator(task)
@@ -83,57 +84,55 @@ def benchmark(tasks, metrics=task_evaluator.CLASSIFICATION_METRICS, agnostic_met
             row = evaluator.evaluate_task(metrics=metrics)
         except Exception as error_msg:
             failed_tasks.append(task)
-            write_error_log(output_dir, error_msg)
+            write_error_log(task.output_dir, error_msg)
             results_table.update_row_status(task.task_id, Status.ERRORED)
         if not row is None:
-            results_table.update_row(row)
+            center = len(ID_COLUMNS) - 1
+            results_table.update_row(row[:center] + [Status.SUCCESS] + row[center:])
 
         
     # columns = ID_COLUMNS + metrics
     # result_df = pd.DataFrame.from_records(results, columns=columns)
     result_df = results_table.get_df()
-    summarize_results(2, "accuracy", result_df, output_dir)
+    summarize_results(3, "accuracy", result_df, output_path)
     return result_df, failed_tasks
 
-def write_error_log(output_dir, error_msg):
+def write_error_log(task_output_dir, error_msg):
     error_log_output_path = os.path.join(task_output_dir, "error_log.txt")
     with open(error_log_output_path, "w") as text_file:
-        text_file.write(error_msg)
+        text_file.write(str(error_msg))
 
-def summarize_sampling_method(n, metric, result_df, output_dir):
+def summarize_sampling_method(metric, result_df, output_dir):
     """
     returns dataframe of top row (sorted by metric) for each sampling_method in result_df.
 
     stores output in output_dir
     """
     #summary_df = result_df.sort_values(metric, ascending=False).groupby('Sampling Method').head(n)
-    idx = result_df.groupby(['Sampling Method'])[metric].transform(max) == result_df[metric]
-    summary_df = result_df[idx].sort_values(metric, ascending=False).head(n)
+    summary_df = result_df.groupby('Sampling Method').max(metric).sort_values(metric, ascending=False)
     if output_dir:
         summary_df.to_csv(os.path.join(output_dir, f'summary_sampling_methods_{metric}.csv'))
     return summary_df
 
 
-def summarize_classifier(n, metric, result_df, output_dir):
+def summarize_classifier(metric, result_df, output_dir):
     """
     returns dataframe of top row (sorted by metric) for each classifier in result_df.
 
     stores output in output_dir
     """
-    idx = result_df.groupby(['Classifier Name'])[metric].transform(max) == result_df[metric]
-    summary_df = result_df[idx].sort_values(metric, ascending=False).head(n)
+    summary_df = result_df.groupby('Classifier Name').max(metric).sort_values(metric, ascending=False)
     if output_dir:
         summary_df.to_csv(os.path.join(output_dir, f'summary_classifiers_{metric}.csv'))
     return summary_df
 
-def summarize_generator(n, metric, result_df, output_dir):
+def summarize_generator(metric, result_df, output_dir):
     """
     returns dataframe of top row (sorted by metric) for each generator in result_df.
 
     stores output in output_dir
     """
-    idx = result_df.groupby(['SD Generator Path'])[metric].transform(max) == result_df[metric]
-    summary_df = result_df[idx].sort_values(metric, ascending=False).head(n)
+    summary_df = result_df.groupby('SD Generator Path').max(metric).sort_values(metric, ascending=False)
     if output_dir:
         summary_df.to_csv(os.path.join(output_dir, f'summary_generators_{metric}.csv'))
     return summary_df
@@ -150,7 +149,7 @@ def summarize_top_n(n, metric, result_df, output_dir):
     return summary_df
 
 def summarize_results(n, metric, result_df, output_dir):
-    summarize_sampling_method(n, metric, result_df, output_dir)
-    summarize_classifier(n, metric, result_df, output_dir)
-    summarize_generator(n, metric, result_df, output_dir)
+    summarize_sampling_method(metric, result_df, output_dir)
+    summarize_classifier(metric, result_df, output_dir)
+    summarize_generator(metric, result_df, output_dir)
     summarize_top_n(n, metric, result_df, output_dir)
