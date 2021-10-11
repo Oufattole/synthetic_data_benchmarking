@@ -86,8 +86,12 @@ class Task_Evaluator():
         task_output_dir = self.task.output_dir
         classifier_file_name = f"classifier_{self.task.pycaret_model}"
         classifier_output_path = os.path.join(task_output_dir, classifier_file_name)
-        print(classifier_output_path)
         classification.save_model(classifier_model, classifier_output_path)
+    def _store_regresser(self, regression_model):
+        task_output_dir = self.task.output_dir
+        regressor_file_name = f"regressor_{self.task.pycaret_model}"
+        regressor_output_path = os.path.join(task_output_dir, regressor_file_name)
+        regression.save_model(regression_model, regressor_output_path)
 
     def _classify(self, combined_data):
         #TODO, check for ordinal and categorical features
@@ -109,6 +113,19 @@ class Task_Evaluator():
             silent = True,
             verbose = False)
     def _regression(self, combined_data):
-        pass
+        self._regression_setup(combined_data)
+        # Train
+        regresser = regression.create_model(self.task.pycaret_model, verbose=False)
+        # Store
+        if self.task.output_dir:
+            self._store_regresser(regresser)
+        # Predict on Test set
+        predictions = regression.predict_model(regresser, verbose=False) # TODO get raw_scores for AUC
+        return predictions
     def _regression_setup(self, combined_data):
-        pass
+        regression.setup(combined_data.sample(frac=1), #shuffles the data
+            target = self.task.target, 
+            test_data = self.test_data,
+            fold_strategy = "kfold", # TODO allow more strategies as hyperparam
+            silent = True,
+            verbose = False)

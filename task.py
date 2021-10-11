@@ -65,6 +65,12 @@ class Task:
         self._run_num = run_num
         self._output_dir = output_dir
         self._is_regression = is_regression
+        if "uniform" in sampling_method_id:
+            parts = sampling_method_id.split("_")
+            if is_regression:
+                assert(len(parts) == 2)
+            else:
+                assert(len(parts) == 1)
 
     def __str__(self):
         description_str = ""

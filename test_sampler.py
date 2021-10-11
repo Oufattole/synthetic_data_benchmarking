@@ -5,6 +5,7 @@ import os
 import sdv.sdv
 from task import Task
 import shutil
+import numpy as np
 
 
 
@@ -30,12 +31,13 @@ class TestSampler(unittest.TestCase):
             shutil.rmtree(task_output_dir) 
         os.mkdir(task_output_dir) 
         # Task function setup
-        def make_task(sampling_method_id):
+        def make_task(sampling_method_id, is_regression=False, target=target):
             return Task(task_id=task_id, train_dataset=train_data_path,
                     test_dataset=test_data_path, target=target,
                     path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
-                    pycaret_model=classifier, run_num=run_num, output_dir=task_output_dir)
-        self.make_task = lambda x: make_task(x)
+                    pycaret_model=classifier, run_num=run_num, output_dir=task_output_dir,
+                    is_regression=is_regression)
+        self.make_task = make_task
     
     
     
@@ -99,6 +101,18 @@ class TestSampler(unittest.TestCase):
             combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
         error_msg = "No valid rows could be generated with the given conditions."
         self.assertTrue(error_msg in str(context.exception))
+    def test_uniform_regression_int(self):
+        task_uniform = self.make_task("uniform_5", is_regression=True, target="Age")
+        sampler = Sampler(task_uniform, self.train_data, self.generator)
+        combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
+        expected_class_frequencies = {26.8:21, 33.6:21, 40.4:21, 47.2:21, 19.966: 21} #max target
+        new_data = pd.cut(x=combined_data["Age"], bins=5).value_counts().to_dict()
+        actual_frequencies = {interval.left:value for interval, value in new_data.items()}
+        self.assertEqual(expected_class_frequencies, actual_frequencies)
+
+    def test_uniform_regression_float(self):
+        #TODO
+        pass
         
         
         

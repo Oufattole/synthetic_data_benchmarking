@@ -70,9 +70,11 @@ class TestBenchmark(unittest.TestCase):
                         'Classifier Name': np.random.randint(5, size=N),
                         'SD Generator Path':np.random.randint(5, size=N)})
         metric = "c1"
+        print(result_df)
         output = benchmark.summarize_top_n(3, metric, result_df, output_dir=None)
         self.assertEqual(output["c1"].tolist(), [988,742,595])
         output = benchmark.summarize_sampling_method(metric, result_df, output_dir=None)
+        print(output)
         self.assertEqual(output["c1"].tolist(), [988,742,510])
         output = benchmark.summarize_classifier(metric, result_df, output_dir=None)
         self.assertEqual(output["c1"].tolist(), [988, 742, 510, 382, 98])

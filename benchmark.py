@@ -108,8 +108,10 @@ def summarize_sampling_method(metric, result_df, output_dir):
 
     stores output in output_dir
     """
-    #summary_df = result_df.sort_values(metric, ascending=False).groupby('Sampling Method').head(n)
-    summary_df = result_df.groupby('Sampling Method').max(metric).sort_values(metric, ascending=False)
+    #summary_df = result_df.groupby('Sampling Method').max(metric).sort_values(metric, ascending=False)
+    column_name = "Sampling Method"
+    idx = result_df.groupby([column_name])[metric].transform(max) == result_df[metric]
+    summary_df = result_df[idx].sort_values(metric, ascending=False)
     if output_dir:
         summary_df.to_csv(os.path.join(output_dir, f'summary_sampling_methods_{metric}.csv'))
     return summary_df
@@ -121,7 +123,9 @@ def summarize_classifier(metric, result_df, output_dir):
 
     stores output in output_dir
     """
-    summary_df = result_df.groupby('Classifier Name').max(metric).sort_values(metric, ascending=False)
+    column_name = "Classifier Name"
+    idx = result_df.groupby([column_name])[metric].transform(max) == result_df[metric]
+    summary_df = result_df[idx].sort_values(metric, ascending=False)
     if output_dir:
         summary_df.to_csv(os.path.join(output_dir, f'summary_classifiers_{metric}.csv'))
     return summary_df
@@ -132,7 +136,9 @@ def summarize_generator(metric, result_df, output_dir):
 
     stores output in output_dir
     """
-    summary_df = result_df.groupby('SD Generator Path').max(metric).sort_values(metric, ascending=False)
+    column_name = "SD Generator Path"
+    idx = result_df.groupby([column_name])[metric].transform(max) == result_df[metric]
+    summary_df = result_df[idx].sort_values(metric, ascending=False)
     if output_dir:
         summary_df.to_csv(os.path.join(output_dir, f'summary_generators_{metric}.csv'))
     return summary_df

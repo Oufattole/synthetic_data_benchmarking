@@ -17,7 +17,7 @@ class TestTask(unittest.TestCase):
         run_num=1
         new_task = task.Task(task_id=task_id, train_dataset=train_dataset,
                             test_dataset=test_dataset, target=target,
-                            path_to_generator=path_to_generator,
+                            path_to_generator=path_to_generator, sampling_method_id="original",
                             pycaret_model=pycaret_model, run_num=run_num)
         self.assertEqual(task_id, new_task.task_id)
         self.assertEqual(train_dataset, new_task.train_dataset)

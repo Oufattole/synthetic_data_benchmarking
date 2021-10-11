@@ -9,6 +9,8 @@ import sklearn
 import os
 import pickle
 import task
+import random
+import math
 
 
 
@@ -62,8 +64,7 @@ class Sampler():
         else:
             return self._sample_uniform_classification()
 
-    def _sample_uniform_classification(self):
-        sampling_method = "uniform"
+    def _get_class_to_sample_size(self):
         target = self.task.target
         target_category_frequencies = self.train_data[target].value_counts().to_dict()
         largest_target = self.train_data[target].value_counts().nlargest(n=1).values[0] # get largest target category
@@ -71,8 +72,13 @@ class Sampler():
         for class_name in target_category_frequencies:
             sample_size = largest_target - target_category_frequencies[class_name]
             class_to_sample_size[class_name] = sample_size
-        all_sampled_data = []
+        return class_to_sample_size
 
+    def _sample_uniform_classification(self):
+        sampling_method = "uniform"
+        target = self.task.target
+        class_to_sample_size = self._get_class_to_sample_size()
+        all_sampled_data = []
         for class_name, sample_size in class_to_sample_size.items():
             if sample_size > 0:
                 conditions = {
@@ -89,7 +95,51 @@ class Sampler():
         else:
             return None, sampling_method, None
     def _sample_uniform_regression(self):
-        pass
+        """
+        convert self.train_data[self.task.target] continuous column into a
+        discrete binned distribution from max to min value of the continuous columns
+
+        then run uniform classification sampling method on it to get the class_to_sample_size
+        (bin_to_sample_size in this case)
+
+        then use uniform_bin_draw iteratively and sample iteratively
+        """
+        sampling_method = self.task.sampling_method_id
+        bins = int(self.sample_method_info[1])
+        original_data = self.train_data
+        self.train_data = self.train_data.copy()
+        self.train_data[self.task.target] = pd.cut(x=self.train_data[self.task.target], bins=bins)
+        #synthetic_data, sampling_method, score_aggregate = self._sample_uniform_classification()
+        class_to_sample_size = self._get_class_to_sample_size()
+        
+        self.train_data = original_data
+        dtype = self.train_data[self.task.target].dtypes
+        def int_uniform_bin_draw(interval):
+            left = interval.left+1 if interval.left.is_integer() else interval.left
+            return random.randint(math.ceil(left), math.floor(interval.right))
+        def float_uniform_bin_draw(interval):
+            return random.uniform(interval.left, interval.right)
+        def uniform_bin_draw(interval):
+            if pd.api.types.is_integer_dtype(dtype):
+                return int_uniform_bin_draw(interval)
+            else:
+                return float_uniform_bin_draw(interval)
+                
+        rows = []
+        for class_name, sample_size in class_to_sample_size.items():
+            for i in range(sample_size):
+                target_value = uniform_bin_draw(class_name)
+                conditions = {
+                self.task.target : target_value
+                } 
+                data = self.generator.sample(1, conditions=conditions) # get 1 sample
+                data[self.task.target] = data[self.task.target].astype(dtype)
+                rows.append(data)
+        
+        synthetic_data = pd.concat(rows)
+        assert(self.train_data.dtypes.to_list() == synthetic_data.dtypes.to_list())
+        score_aggregate = evaluate(synthetic_data, self.train_data, aggregate=True)
+        return synthetic_data, sampling_method, score_aggregate
 
     def _sample_baseline(self):
         sampling_method_info = "baseline"
