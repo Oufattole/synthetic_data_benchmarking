@@ -11,6 +11,7 @@ import pickle
 import task
 import task_evaluator
 import numpy as np
+import traceback
 
 ID_COLUMNS = ["Task ID", "SD Generator Path", "Classifier Name", "Sampling Method", "Run", "Status"]
 
@@ -52,7 +53,7 @@ class Results_Table():
         return self.result_df
 
 def benchmark(tasks, metrics=None, agnostic_metrics=False,
-            output_path='results/', summary_metric="accuracy"):
+            output_path='results/', summary_metric="accuracy", is_regression=False):
     """Run benchmark testing on a set of tasks. Return detailed results of each run stored in a
     DataFrame object.
     Args:
@@ -72,21 +73,21 @@ def benchmark(tasks, metrics=None, agnostic_metrics=False,
         pd.DataFrame:
             benchmarking results in detail.
     """
+    all_metrics = task_evaluator.REGRESSION_METRICS if is_regression else task_evaluator.CLASSIFICATION_METRICS
+    metrics = all_metrics if metrics is None else metrics
     failed_tasks = []
     results = []
     results_table = None
     results_table = Results_Table(output_path, tasks, metrics)
     for task in tasks:
-        all_metrics = task_evaluator.REGRESSION_METRICS if task.is_regression else task_evaluator.CLASSIFICATION_METRICS
-        task_metrics = all_metrics if metrics is None else metrics
-        
         results_table.update_row_status(task.task_id, Status.RUNNING)
         evaluator = task_evaluator.Task_Evaluator(task)
         row = None
         try:
             row = evaluator.evaluate_task(metrics=metrics)
-        except Exception as error_msg:
+        except Exception:
             failed_tasks.append(task)
+            error_msg = traceback.format_exc()
             write_error_log(task.output_dir, error_msg)
             results_table.update_row_status(task.task_id, Status.ERRORED)
         if not row is None:
@@ -97,13 +98,14 @@ def benchmark(tasks, metrics=None, agnostic_metrics=False,
     # columns = ID_COLUMNS + metrics
     # result_df = pd.DataFrame.from_records(results, columns=columns)
     result_df = results_table.get_df()
-    summarize_results(3, "accuracy", result_df, output_path)
+    summary_metric = "mse" if is_regression else "accuracy" 
+    summarize_results(3, summary_metric, result_df, output_path)
     return result_df, failed_tasks
 
 def write_error_log(task_output_dir, error_msg):
     error_log_output_path = os.path.join(task_output_dir, "error_log.txt")
     with open(error_log_output_path, "w") as text_file:
-        text_file.write(str(error_msg))
+        text_file.write(error_msg)
 
 def summarize_sampling_method(metric, result_df, output_dir):
     """

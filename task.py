@@ -226,8 +226,7 @@ def create_tasks(train_dataset="data/train.csv",
         sampling_method_id, run_num, output_dir):
         task_id = "{}_{}_{}_{}_{}".format(task_num, gen_name, 
                                         sampling_method_id, classifier,
-                                        run_num, is_regression=is_regression,
-                                        regression_bins=regression_bins)
+                                        run_num)
         task_output_dir = None
         if output_dir is not None:
             task_output_dir = os.path.join(output_dir, task_id)
@@ -236,7 +235,8 @@ def create_tasks(train_dataset="data/train.csv",
         task_instance = Task(task_id=task_id, train_dataset=train_dataset,
                     test_dataset=test_dataset, target=target,
                     path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
-                    pycaret_model=classifier, run_num=run_num, output_dir=task_output_dir)
+                    pycaret_model=classifier, run_num=run_num, output_dir=task_output_dir,
+                    is_regression=is_regression, regression_bins=regression_bins)
         
         if output_dir is not None:
             task_instance.save_as(os.path.join(task_output_dir, 'meta.json'))

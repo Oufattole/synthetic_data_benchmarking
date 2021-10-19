@@ -100,7 +100,11 @@ class Task_Evaluator():
         mae = sklearn.metrics.mean_absolute_error(ground_truth, predictions)
         mse = sklearn.metrics.mean_squared_error(ground_truth, predictions)
         r2 = sklearn.metrics.r2_score(ground_truth, predictions)
-        msle = sklearn.metrics.mean_squared_log_error(ground_truth, predictions)
+        msle=None
+        try:
+            msle = sklearn.metrics.mean_squared_log_error(ground_truth, predictions)
+        except ValueError as e:
+            pass
         return [mae, mse, r2, msle]
     
     def _store_classifier(self, classifier_model):

@@ -1,0 +1,2 @@
+,Task ID,SD Generator Path,Classifier Name,Sampling Method,Run,Status,mae,mse,r2,msle
+1,1_GuassianCopulaModel_uniform_lr_0,regression_generators/GuassianCopulaModel.pkl,lr,uniform,0,Status.SUCCESS,10924.0556640625,176303696.0,-0.1820187728884468,

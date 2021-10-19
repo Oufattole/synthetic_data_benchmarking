@@ -80,6 +80,18 @@ class TestBenchmark(unittest.TestCase):
         self.assertEqual(output["c1"].tolist(), [988, 742, 510, 382, 98])
         output = benchmark.summarize_generator(metric, result_df, output_dir=None)
         self.assertEqual(output["c1"].tolist(), [988, 595, 510, 382, 106])
+    def test_regression_benchmarking(self):
+        results_output_path = "results/"
+        task_output_path = "tasks/"
+        path_to_generators = "regression_generators/"
+        tasks = task.create_tasks(train_dataset="regression_data/train.csv",
+                            test_dataset="regression_data/test.csv", target="charges",
+                            path_to_generators = path_to_generators, pycaret_models=["lr"],
+                            task_sampling_method="all", run_num=1, output_dir=task_output_path, is_regression=True)
+        # run benchmark on tasks
+        result_df, failed_tasks = benchmark.benchmark(tasks, agnostic_metrics=False,
+                                output_path=results_output_path, is_regression=True)
+        self.assertEqual(0, len(failed_tasks))
     
 
 

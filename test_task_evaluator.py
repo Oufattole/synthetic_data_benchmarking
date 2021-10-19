@@ -130,7 +130,20 @@ class TestTaskEvauator(unittest.TestCase):
                     test_dataset="data/test.csv", target="Age", path_to_generator=path_to_generator,
                  sampling_method_id="uniform", pycaret_model="lr", run_num=0, is_regression=True)
         evaluator = task_evaluator.Task_Evaluator(test_task)
-        result = evaluator.evaluate_task()        
+        result = evaluator.evaluate_task()      
+
+    def test_uniform_regression_all_state_dataset(self):
+        results_output_path = "results/"
+        task_output_path = "tasks/"
+        path_to_generators = "regression_generators/"
+        tasks = task.create_tasks(train_dataset="regression_data/train.csv",
+                            test_dataset="regression_data/test.csv", target="charges",
+                            path_to_generators = path_to_generators, pycaret_models=["lr", "ridge", "kr"],
+                            task_sampling_method="uniform", run_num=1, output_dir=task_output_path, is_regression=True)
+        test_task = tasks[0]
+        # run benchmark on tasks
+        evaluator = task_evaluator.Task_Evaluator(test_task)
+        result = evaluator.evaluate_task()    
 
 if __name__ == '__main__':
     unittest.main()
