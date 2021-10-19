@@ -105,7 +105,7 @@ class Sampler():
         then use uniform_bin_draw iteratively and sample iteratively
         """
         sampling_method = self.task.sampling_method_id
-        bins = int(self.sample_method_info[1])
+        bins = self.task.regression_bins
         original_data = self.train_data
         self.train_data = self.train_data.copy()
         self.train_data[self.task.target] = pd.cut(x=self.train_data[self.task.target], bins=bins)

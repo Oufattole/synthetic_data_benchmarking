@@ -12,6 +12,7 @@ from pycaret import classification
 from pycaret import regression
 
 CLASSIFICATION_METRICS = ['auc', 'f1', 'recall', 'precision', 'accuracy']
+REGRESSION_METRICS = ["mae", "mse", "r2", "msle"]
 
 class Task_Evaluator():
     def __init__(self, task):
@@ -21,7 +22,7 @@ class Task_Evaluator():
         generator = sdv.sdv.SDV.load(task.path_to_generator)
         self.sampler = Sampler(task, self.train_data, generator)
 
-    def evaluate_task(self, metrics=CLASSIFICATION_METRICS):
+    def evaluate_task(self, metrics=None):
         """Run benchmark testing on a task. Save intermedia data, trained models, and optimized
         hyperparameters. Return testing results.
 
@@ -39,17 +40,22 @@ class Task_Evaluator():
             list:
                 benchmarking results of each run.
         """
+        all_metrics = REGRESSION_METRICS if self.task.is_regression else CLASSIFICATION_METRICS
+        if metrics is None:
+            metrics = all_metrics
         
         combined_data, sampling_method_info, score_aggregate = self.sampler.sample_data()
-        predictions = self._classify(combined_data)
+
+        predictions = self._regression(combined_data) if self.task.is_regression else self._classify(combined_data)
         ground_truth = predictions[self.task.target]
-        classifier_predictions = predictions["Label"]
-        classifier_score = None
+        output_predictions = predictions["Label"]
+        output_score = None
         if "Score" in predictions.columns:
-            classifier_score = predictions["Score"]
-        scores = self._get_scores(ground_truth, classifier_predictions, classifier_score)
+            output_score = predictions["Score"]
+        scores = self._get_scores(ground_truth, output_predictions, output_score)
         # make dictionary of metric name to score
-        metric_to_score = {metric:score for metric, score in zip(CLASSIFICATION_METRICS, scores)}
+         
+        metric_to_score = {metric:score for metric, score in zip(all_metrics, scores)}
         # record entry
         # results_row = model_column + sample_size_column + score_column + classifier_column + performance_column
         row = [self.task.task_id, self.task.path_to_generator, self.task.pycaret_model,
@@ -57,9 +63,17 @@ class Task_Evaluator():
         for metric in metrics:
             row += [metric_to_score[metric]] # TODO change to append
         return row
-        
+    
+    
+
+    def _get_scores(self, ground_truth, predictions, scores):
+        if self.task.is_regression:
+            return self._get_regression_scores(ground_truth, predictions, scores)
+        else:
+            return self._get_classification_scores(ground_truth, predictions, scores)
+    
     @classmethod
-    def _get_scores(self, ground_truth, classifier_predictions, classifier_score):
+    def _get_classification_scores(self, ground_truth, classifier_predictions, classifier_score):
         labels = sorted(ground_truth.unique())
         
         precision_avg, recall_avg, f1_avg, _ = sklearn.metrics.precision_recall_fscore_support(ground_truth, classifier_predictions, average="macro", labels = labels)
@@ -79,9 +93,16 @@ class Task_Evaluator():
         # support = convert_labels_lists_to_dict(support)
 
         return [auc, f1, recall, precision, accuracy, support]
+    
 
-    def _get_model(self):
-        return pick
+    @classmethod
+    def _get_regression_scores(self, ground_truth, predictions, classifier_score):
+        mae = sklearn.metrics.mean_absolute_error(ground_truth, predictions)
+        mse = sklearn.metrics.mean_squared_error(ground_truth, predictions)
+        r2 = sklearn.metrics.r2_score(ground_truth, predictions)
+        msle = sklearn.metrics.mean_squared_log_error(ground_truth, predictions)
+        return [mae, mse, r2, msle]
+    
     def _store_classifier(self, classifier_model):
         task_output_dir = self.task.output_dir
         classifier_file_name = f"classifier_{self.task.pycaret_model}"

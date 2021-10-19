@@ -8,7 +8,9 @@ import os
 
 SDV_GENGERATORS = ["ct_gan", "gaussain_copula", "copula_gan", "tvae"]
 
-def split_data(dataset_path ="data.csv", output_directory="data", train_filename = "train.csv", test_filename = "test.csv", target_name="TARGET"):
+def split_data(dataset_path ="data.csv", output_directory="data",
+                train_filename = "train.csv", test_filename = "test.csv",
+                target_name="TARGET"):
     """Split real data into train and test set
     Args:
         dataset_path:

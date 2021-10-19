@@ -51,7 +51,7 @@ class Results_Table():
     def get_df(self):
         return self.result_df
 
-def benchmark(tasks, metrics=task_evaluator.CLASSIFICATION_METRICS, agnostic_metrics=False,
+def benchmark(tasks, metrics=None, agnostic_metrics=False,
             output_path='results/', summary_metric="accuracy"):
     """Run benchmark testing on a set of tasks. Return detailed results of each run stored in a
     DataFrame object.
@@ -77,6 +77,9 @@ def benchmark(tasks, metrics=task_evaluator.CLASSIFICATION_METRICS, agnostic_met
     results_table = None
     results_table = Results_Table(output_path, tasks, metrics)
     for task in tasks:
+        all_metrics = task_evaluator.REGRESSION_METRICS if task.is_regression else task_evaluator.CLASSIFICATION_METRICS
+        task_metrics = all_metrics if metrics is None else metrics
+        
         results_table.update_row_status(task.task_id, Status.RUNNING)
         evaluator = task_evaluator.Task_Evaluator(task)
         row = None

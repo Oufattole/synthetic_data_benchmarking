@@ -33,7 +33,7 @@ class Task:
     def __init__(self, task_id=None, train_dataset=None,
                  test_dataset=None, target=None, path_to_generator=None,
                  sampling_method_id=None, pycaret_model=None, run_num=None,
-                 output_dir=None, is_regression=False):
+                 output_dir=None, is_regression=False, regression_bins=5):
         """Create a task configuration object from a list of settings.
         Args:
             task_id (str):
@@ -65,12 +65,7 @@ class Task:
         self._run_num = run_num
         self._output_dir = output_dir
         self._is_regression = is_regression
-        if "uniform" in sampling_method_id:
-            parts = sampling_method_id.split("_")
-            if is_regression:
-                assert(len(parts) == 2)
-            else:
-                assert(len(parts) == 1)
+        self._regression_bins = regression_bins
 
     def __str__(self):
         description_str = ""
@@ -160,12 +155,16 @@ class Task:
     def is_regression(self):
         return self._is_regression
 
+    @property
+    def regression_bins(self):
+        return self._regression_bins
+
 
 def create_tasks(train_dataset="data/train.csv",
                 test_dataset="data/test.csv", target="TARGET",
                 path_to_generators = "generators/", pycaret_models=None,
                 task_sampling_method="all", run_num=1, output_dir=None,
-                is_regression=False):
+                is_regression=False, regression_bins=5):
     """Create a list of benchmark task objects.
     
     Args:
@@ -227,7 +226,8 @@ def create_tasks(train_dataset="data/train.csv",
         sampling_method_id, run_num, output_dir):
         task_id = "{}_{}_{}_{}_{}".format(task_num, gen_name, 
                                         sampling_method_id, classifier,
-                                        run_num, is_regression=is_regression)
+                                        run_num, is_regression=is_regression,
+                                        regression_bins=regression_bins)
         task_output_dir = None
         if output_dir is not None:
             task_output_dir = os.path.join(output_dir, task_id)

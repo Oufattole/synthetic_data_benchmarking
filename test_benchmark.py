@@ -44,7 +44,7 @@ class TestBenchmark(unittest.TestCase):
         expected = benchmark.Status.SUCCESS
         self.assertEqual(entry,expected)
 
-    def test_benchmark(self):
+    def test_benchmark_classification(self):
         # create tasks
         results_output_path = "results/"
         task_output_path = "tasks/"

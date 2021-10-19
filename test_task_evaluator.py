@@ -97,8 +97,8 @@ class TestTaskEvauator(unittest.TestCase):
         # self.assertEqual(auc, .5)
         path_to_generator = "generators/default_gaussain_copula.pkl"
         test_task = task.Task(task_id="36_none_baseline_svm_0", train_dataset="data/train.csv",
-                    test_dataset="data/test.csv", target="Attrition", path_to_generator=path_to_generator,
-                 sampling_method_id="baseline", pycaret_model="lr", run_num=0)
+                            test_dataset="data/test.csv", target="Attrition", path_to_generator=path_to_generator,
+                            sampling_method_id="baseline", pycaret_model="lr", run_num=0)
         evaluator = task_evaluator.Task_Evaluator(test_task)
         df = evaluator.train_data
         for i in range(10):
@@ -122,7 +122,15 @@ class TestTaskEvauator(unittest.TestCase):
                  sampling_method_id="baseline", pycaret_model="svm", run_num=0)
         evaluator = task_evaluator.Task_Evaluator(test_task)
         result = evaluator.evaluate_task()
-        
+    
+    def test_uniform_regression(self):
+        #TestTaskEvauator.test_svm_classifier
+        path_to_generator = "generators/default_gaussain_copula.pkl"
+        test_task = task.Task(task_id="36_none_baseline_lr_0", train_dataset="data/train.csv",
+                    test_dataset="data/test.csv", target="Age", path_to_generator=path_to_generator,
+                 sampling_method_id="uniform", pycaret_model="lr", run_num=0, is_regression=True)
+        evaluator = task_evaluator.Task_Evaluator(test_task)
+        result = evaluator.evaluate_task()        
 
 if __name__ == '__main__':
     unittest.main()
