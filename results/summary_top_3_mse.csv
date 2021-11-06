@@ -1,4 +1,4 @@
 ,Task ID,SD Generator Path,Classifier Name,Sampling Method,Run,Status,mae,mse,r2,msle
-1,1_GuassianCopulaModel_uniform_lr_0,regression_generators/GuassianCopulaModel.pkl,lr,uniform,0,Status.SUCCESS,10924.0556640625,176303696.0,-0.1820187728884468,
-3,3_GuassianCopulaModel_original_1_lr_0,regression_generators/GuassianCopulaModel.pkl,lr,original 534/802,0,Status.SUCCESS,4910.7373046875,39839268.0,0.7328997416501093,
-4,4_GuassianCopulaModel_original_2_lr_0,regression_generators/GuassianCopulaModel.pkl,lr,original 801/802,0,Status.SUCCESS,4934.32568359375,39264684.0,0.7367520102577357,
+1,1_GuassianCopulaModel_uniform_lr_0,regression_generators/GuassianCopulaModel.pkl,lr,uniform,0,Status.SUCCESS,10805.28125,171888704.0,-0.15241873077046408,
+4,4_GuassianCopulaModel_original_2_lr_0,regression_generators/GuassianCopulaModel.pkl,lr,original 801/802,0,Status.SUCCESS,4759.4619140625,38695708.0,0.7405666821261903,
+3,3_GuassianCopulaModel_original_1_lr_0,regression_generators/GuassianCopulaModel.pkl,lr,original 534/802,0,Status.SUCCESS,4630.40673828125,37545144.0,0.7482805667252853,

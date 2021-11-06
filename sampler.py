@@ -128,11 +128,20 @@ class Sampler():
         rows = []
         for class_name, sample_size in class_to_sample_size.items():
             for i in range(sample_size):
-                target_value = uniform_bin_draw(class_name)
-                conditions = {
-                self.task.target : target_value
-                } 
-                data = self.generator.sample(1, conditions=conditions) # get 1 sample
+                data = None
+                j = 0
+                while data is None:
+                    j+=1
+                    try:
+                        target_value = uniform_bin_draw(class_name)
+                        conditions = {
+                            self.task.target : target_value
+                            } 
+                        data = self.generator.sample(1, conditions=conditions) # get 1 sample
+                    except:
+                        if j > 30:
+                            raise
+
                 data[self.task.target] = data[self.task.target].astype(dtype)
                 rows.append(data)
         
