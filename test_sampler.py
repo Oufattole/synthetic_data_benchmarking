@@ -122,6 +122,30 @@ class TestSampler(unittest.TestCase):
         new_data = pd.cut(x=combined_data["Age"], bins=5).value_counts().to_dict()
         actual_frequencies = {interval.left:value for interval, value in new_data.items()}
         self.assertEqual(expected_class_frequencies, actual_frequencies)
+    
+    def test_uniform_regression_retry(self):
+        # TestSampler.test_uniform_regression_retry
+        results_output_path = "results/"
+        task_output_path = "tasks/test_id"
+        generator_path = "regression_generators/TvaeModel.pkl"
+        train_data = "regression_data/train.csv"
+        test_data = "regression_data/test.csv"
+        target = "charges"
+        sampling_method_id="uniform"
+        classifier="lr"
+        run_num=0
+        is_regression=True
+        
+        task_uniform = Task(task_id="test_id", train_dataset=train_data,
+                    test_dataset=test_data, target=target,
+                    path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
+                    pycaret_model=classifier, run_num=run_num, output_dir=task_output_path,
+                    is_regression=is_regression)
+        generator = sdv.sdv.SDV.load(generator_path)
+        loaded_train_data = pd.read_csv(train_data)
+        sampler = Sampler(task_uniform, loaded_train_data, generator)
+        combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
+        
         
         
         

@@ -104,6 +104,7 @@ class Sampler():
 
         then use uniform_bin_draw iteratively and sample iteratively
         """
+        
         sampling_method = self.task.sampling_method_id
         bins = self.task.regression_bins
         original_data = self.train_data
@@ -127,23 +128,22 @@ class Sampler():
                 
         rows = []
         for class_name, sample_size in class_to_sample_size.items():
-            for i in range(sample_size):
-                data = None
-                j = 0
-                while data is None:
-                    j+=1
-                    try:
-                        target_value = uniform_bin_draw(class_name)
-                        conditions = {
-                            self.task.target : target_value
-                            } 
-                        data = self.generator.sample(1, conditions=conditions) # get 1 sample
-                    except:
-                        if j > 30:
-                            raise
-
-                data[self.task.target] = data[self.task.target].astype(dtype)
-                rows.append(data)
+            data = None
+            j = 0
+            while data is None:
+                j+=1
+                try:
+                    target_value = uniform_bin_draw(class_name)
+                    conditions = {
+                        self.task.target : target_value
+                        } 
+                    data = self.generator.sample(sample_size, conditions=conditions) # get 1 sample
+                except:
+                    print(class_name)
+                    if j > 30:
+                        raise
+            data[self.task.target] = data[self.task.target].astype(dtype)
+            rows.append(data)
         
         synthetic_data = pd.concat(rows)
         assert(self.train_data.dtypes.to_list() == synthetic_data.dtypes.to_list())
