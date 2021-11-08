@@ -102,15 +102,15 @@ class TestSampler(unittest.TestCase):
             combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
         error_msg = "No valid rows could be generated with the given conditions."
         self.assertTrue(error_msg in str(context.exception))
-    # def test_uniform_regression_int(self): TODO add integer support for regression
-    #     # TestSampler.test_uniform_regression_int
-    #     task_uniform = self.make_task("uniform", is_regression=True, target="Age")
-    #     sampler = Sampler(task_uniform, self.train_data, self.generator)
-    #     combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
-    #     expected_class_frequencies = {26.8:21, 33.6:21, 40.4:21, 47.2:21, 19.966: 21} #max target
-    #     new_data = pd.cut(x=combined_data["Age"], bins=5).value_counts().to_dict()
-    #     actual_frequencies = {interval.left:value for interval, value in new_data.items()}
-    #     self.assertEqual(expected_class_frequencies, actual_frequencies)
+    def test_uniform_regression_int(self): #TODO add integer support for regression
+        # TestSampler.test_uniform_regression_int
+        task_uniform = self.make_task("uniform", is_regression=True, target="Age")
+        sampler = Sampler(task_uniform, self.train_data, self.generator)
+        combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
+        expected_class_frequencies = {26.8:21, 33.6:21, 40.4:21, 47.2:21, 19.966: 21} #max target
+        new_data = pd.cut(x=combined_data["Age"], bins=5).value_counts().to_dict()
+        actual_frequencies = {interval.left:value for interval, value in new_data.items()}
+        self.assertEqual(expected_class_frequencies, actual_frequencies)
 
     def test_uniform_regression_float(self):
         task_uniform = self.make_task("uniform", is_regression=True, target="Age")
@@ -123,8 +123,7 @@ class TestSampler(unittest.TestCase):
         new_data = pd.cut(x=combined_data["Age"], bins=5).value_counts().to_dict()
         actual_frequencies = {interval.left:value for interval, value in new_data.items()}
         self.assertEqual(expected_class_frequencies, actual_frequencies)
-        self.assertEqual(len(sampler.logs), 1)
-    
+        
     def test_uniform_regression_retry(self):
         # TestSampler.test_uniform_regression_retry
         results_output_path = "results/"
@@ -147,7 +146,6 @@ class TestSampler(unittest.TestCase):
         loaded_train_data = pd.read_csv(train_data)
         sampler = Sampler(task_uniform, loaded_train_data, generator)
         combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
-        self.assertEqual(1, len(sampler.logs))
         
         
         

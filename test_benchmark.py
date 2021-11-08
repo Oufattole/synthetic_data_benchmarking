@@ -92,7 +92,9 @@ class TestBenchmark(unittest.TestCase):
         result_df, failed_tasks = benchmark.benchmark(tasks, agnostic_metrics=False,
                                 output_path=results_output_path, is_regression=True)
         self.assertEqual(0, len(failed_tasks))
+
     def test_sampler_logging(self):
+        #TestBenchmark.test_sampler_logging
         results_output_path = "results/"
         task_output_path = "tasks/test_id"
         generator_path = "regression_generators/TvaeModel.pkl"
@@ -104,10 +106,10 @@ class TestBenchmark(unittest.TestCase):
         run_num=0
         is_regression=True
         
-        tasks = [Task(task_id="test_id", train_dataset=train_data,
+        tasks = [task.Task(task_id="test_id", train_dataset=train_data,
                     test_dataset=test_data, target=target,
                     path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
-                    pycaret_model=classifier, run_num=run_num, output_dir=task_output_path,
+                    pycaret_model=classifier, run_num=run_num, output_dir=None,
                     is_regression=is_regression)]
         # run benchmark on tasks
         result_df, failed_tasks = benchmark.benchmark(tasks, agnostic_metrics=False,

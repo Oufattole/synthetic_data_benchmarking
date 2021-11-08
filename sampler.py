@@ -94,6 +94,25 @@ class Sampler():
             return synthetic_data, sampling_method, score_aggregate
         else:
             return None, sampling_method, None
+    def _sample_in_interval(self, sample_size, interval, max_retries=1000):
+        increasing_sample_size = sample_size
+        increasing_sample_size *= self.task.regression_bins
+        data = self.generator.sample(increasing_sample_size)
+        data = data[data[self.task.target].between(interval.left, interval.right, inclusive=True)]
+        retries = 0
+        while data.shape[0] < sample_size:
+            increasing_sample_size *= self.task.regression_bins
+            more_data = self.generator.sample(sample_size)
+            valid_indexes = more_data[self.task.target].between(
+                interval.left, interval.right, inclusive=True)
+            valid_data = more_data[valid_indexes]
+            data = pd.concat([data, valid_data])
+            if retries > max_retries:
+                error_msg = f"failed to generate samples for target \"{self.task.target}\" in range {interval} with max-retries {max_retries}\n"
+                raise RuntimeError(error_msg)
+            retries += 1
+        data = data.head(sample_size)
+        return data
     def _sample_uniform_regression(self):
         """
         convert self.train_data[self.task.target] continuous column into a
@@ -106,9 +125,10 @@ class Sampler():
 
         Sample iteration options
             -sample one at a time
-            -*sample a bunch and subselect the ones that are in the right range
-                check what sdv library does
-            -sample one at a time with uniform bin range
+            -sample a bunch and subselect the ones that are in the right range
+                check what sdv library does -- sometimes all bins mysteriously fail
+            -sample one at a time with uniform bin range -- too slow
+            -*manual retry sampling
         """
         
         sampling_method = self.task.sampling_method_id
@@ -133,36 +153,10 @@ class Sampler():
                 return float_uniform_bin_draw(interval)
                 
         rows = []
-        for class_name, sample_size in class_to_sample_size.items():
-            # data = None
-            # j = 0
-            # while data is None:
-            #     j+=1
-            #     try:
-            #         target_value = uniform_bin_draw(class_name)
-            #         conditions = {
-            #             self.task.target : target_value
-            #             } 
-            #         data = self.generator.sample(sample_size, conditions=conditions) # get 1 sample
-            #     except:
-            #         print(class_name)
-            #         if j > 30:
-            #             raise
-            
-            interval_radius = (class_name.right - class_name.left)/2*1.05
-            target_value = class_name.right - interval_radius
-            conditions = {self.task.target : target_value}
-            try:
-                data = self.generator.sample(sample_size, conditions=conditions,
-                    float_rtol=interval_radius, max_retries=100)
-                data[self.task.target] = data[self.task.target].astype(dtype)
-                rows.append(data)
-            except Exception:
-                error_msg = traceback.format_exc()
-                error_msg += f"failed to generate samples for target \"{self.task.target}\" in range {class_name}\n"
-                self.logs.append(error_msg)
-                #raise RuntimeError(error_msg) from exc
-        print("\n".join(self.logs))
+        for interval, sample_size in class_to_sample_size.items():
+            data = self._sample_in_interval(sample_size, interval)
+            data[self.task.target] = data[self.task.target].astype(dtype)
+            rows.append(data)
         synthetic_data = pd.concat(rows)
         assert(self.train_data.dtypes.to_list() == synthetic_data.dtypes.to_list())
         score_aggregate = evaluate(synthetic_data, self.train_data, aggregate=True)
