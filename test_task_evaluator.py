@@ -143,7 +143,7 @@ class TestTaskEvauator(unittest.TestCase):
         test_task = tasks[0]
         # run benchmark on tasks
         evaluator = task_evaluator.Task_Evaluator(test_task)
-        result = evaluator.evaluate_task()    
+        result = evaluator.evaluate_task()  
 
 if __name__ == '__main__':
     unittest.main()

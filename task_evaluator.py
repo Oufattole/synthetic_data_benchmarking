@@ -64,7 +64,8 @@ class Task_Evaluator():
             row += [metric_to_score[metric]] # TODO change to append
         return row
     
-    
+    def get_sampler_logs(self):
+        return self.sampler.logs
 
     def _get_scores(self, ground_truth, predictions, scores):
         if self.task.is_regression:

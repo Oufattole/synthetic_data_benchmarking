@@ -13,7 +13,6 @@ import random
 import math
 
 
-
 class Sampler():
     def __init__(self, task_instance, train_data, generator):
         sample_method_name = task_instance.sampling_method_id
@@ -24,6 +23,7 @@ class Sampler():
         self.train_data = train_data
 
     def sample_data(self):
+        self.logs = []
         synthetic_data, sampling_method_info, score_aggregate = None, None, None
         if self.sampling_method ==  "original":
             synthetic_data, sampling_method_info, score_aggregate = self._sample_original()
@@ -103,6 +103,12 @@ class Sampler():
         (bin_to_sample_size in this case)
 
         then use uniform_bin_draw iteratively and sample iteratively
+
+        Sample iteration options
+            -sample one at a time
+            -*sample a bunch and subselect the ones that are in the right range
+                check what sdv library does
+            -sample one at a time with uniform bin range
         """
         
         sampling_method = self.task.sampling_method_id
@@ -128,23 +134,35 @@ class Sampler():
                 
         rows = []
         for class_name, sample_size in class_to_sample_size.items():
-            data = None
-            j = 0
-            while data is None:
-                j+=1
-                try:
-                    target_value = uniform_bin_draw(class_name)
-                    conditions = {
-                        self.task.target : target_value
-                        } 
-                    data = self.generator.sample(sample_size, conditions=conditions) # get 1 sample
-                except:
-                    print(class_name)
-                    if j > 30:
-                        raise
-            data[self.task.target] = data[self.task.target].astype(dtype)
-            rows.append(data)
-        
+            # data = None
+            # j = 0
+            # while data is None:
+            #     j+=1
+            #     try:
+            #         target_value = uniform_bin_draw(class_name)
+            #         conditions = {
+            #             self.task.target : target_value
+            #             } 
+            #         data = self.generator.sample(sample_size, conditions=conditions) # get 1 sample
+            #     except:
+            #         print(class_name)
+            #         if j > 30:
+            #             raise
+            
+            interval_radius = (class_name.right - class_name.left)/2*1.05
+            target_value = class_name.right - interval_radius
+            conditions = {self.task.target : target_value}
+            try:
+                data = self.generator.sample(sample_size, conditions=conditions,
+                    float_rtol=interval_radius, max_retries=100)
+                data[self.task.target] = data[self.task.target].astype(dtype)
+                rows.append(data)
+            except Exception:
+                error_msg = traceback.format_exc()
+                error_msg += f"failed to generate samples for target \"{self.task.target}\" in range {class_name}\n"
+                self.logs.append(error_msg)
+                #raise RuntimeError(error_msg) from exc
+        print("\n".join(self.logs))
         synthetic_data = pd.concat(rows)
         assert(self.train_data.dtypes.to_list() == synthetic_data.dtypes.to_list())
         score_aggregate = evaluate(synthetic_data, self.train_data, aggregate=True)

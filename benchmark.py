@@ -90,6 +90,9 @@ def benchmark(tasks, metrics=None, agnostic_metrics=False,
             error_msg = traceback.format_exc()
             write_error_log(task.output_dir, error_msg)
             results_table.update_row_status(task.task_id, Status.ERRORED)
+        sampler_logs = evaluator.get_sampler_logs()
+        if len(sampler_logs) > 0:
+            write_sampler_logs(task.output_dir, sampler_logs)
         if not row is None:
             center = len(ID_COLUMNS) - 1
             results_table.update_row(row[:center] + [Status.SUCCESS] + row[center:])
@@ -106,6 +109,11 @@ def write_error_log(task_output_dir, error_msg):
     error_log_output_path = os.path.join(task_output_dir, "error_log.txt")
     with open(error_log_output_path, "w") as text_file:
         text_file.write(error_msg)
+
+def write_sampler_logs(task_output_dir, logs_list):
+    sampler_log_output_path = os.path.join(task_output_dir, "sampler_logs.txt")
+    with open(sampler_log_output_path, "w") as text_file:
+        text_file.write("\n".join(logs_list))
 
 def summarize_sampling_method(metric, result_df, output_dir):
     """
