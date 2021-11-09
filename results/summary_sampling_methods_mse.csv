@@ -1,2 +1,3 @@
 ,Task ID,SD Generator Path,Classifier Name,Sampling Method,Run,Status,mae,mse,r2,msle
-0,test_id,regression_generators/TvaeModel.pkl,lr,uniform,0,Status.SUCCESS,7491.880859375,85802672.0,0.4247405523394665,
+3,3_CtganModel_uniform_lr_0,regression_generators/CtganModel.pkl,lr,uniform,0,Status.IMPERFECT,16813.373046875,324568992.0,-1.1760555808701794,2.048473834991455
+0,0_none_baseline_lr_0,regression_generators/CtganModel.pkl,lr,baseline,0,Status.SUCCESS,4252.61962890625,35574256.0,0.7614942570731857,

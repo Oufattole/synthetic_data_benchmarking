@@ -11,6 +11,7 @@ import pickle
 import task
 import random
 import math
+import sys
 
 
 class Sampler():
@@ -94,23 +95,27 @@ class Sampler():
             return synthetic_data, sampling_method, score_aggregate
         else:
             return None, sampling_method, None
-    def _sample_in_interval(self, sample_size, interval, max_retries=1000):
+    def _sample_in_interval(self, sample_size, interval, max_retries=100):
         increasing_sample_size = sample_size
         increasing_sample_size *= self.task.regression_bins
         data = self.generator.sample(increasing_sample_size)
         data = data[data[self.task.target].between(interval.left, interval.right, inclusive=True)]
         retries = 0
         while data.shape[0] < sample_size:
-            increasing_sample_size *= self.task.regression_bins
+            if not (increasing_sample_size > sys.maxsize /self.task.regression_bins):
+                increasing_sample_size *= self.task.regression_bins
             more_data = self.generator.sample(sample_size)
             valid_indexes = more_data[self.task.target].between(
                 interval.left, interval.right, inclusive=True)
             valid_data = more_data[valid_indexes]
             data = pd.concat([data, valid_data])
             if retries > max_retries:
-                error_msg = f"failed to generate samples for target \"{self.task.target}\" in range {interval} with max-retries {max_retries}\n"
-                raise RuntimeError(error_msg)
+                error_msg = f"failed to generate {sample_size} samples for target \"{self.task.target}\" in range {interval} with max-retries {max_retries}. Only generated {data.shape[0]}\n"
+                self.logs.append(error_msg)
+                break
             retries += 1
+            # print(f"samplesize: {increasing_sample_size}")
+        print(f"retries: {retries}")
         data = data.head(sample_size)
         return data
     def _sample_uniform_regression(self):
@@ -124,11 +129,10 @@ class Sampler():
         then use uniform_bin_draw iteratively and sample iteratively
 
         Sample iteration options
-            -sample one at a time
+            -sample one at a time with uniform bin range -- too slow
             -sample a bunch and subselect the ones that are in the right range
                 check what sdv library does -- sometimes all bins mysteriously fail
-            -sample one at a time with uniform bin range -- too slow
-            -*manual retry sampling
+            -*manual retry sampling - sample a bunch of elements and only select ones in the right range
         """
         
         sampling_method = self.task.sampling_method_id

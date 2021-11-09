@@ -123,7 +123,7 @@ class TestSampler(unittest.TestCase):
         new_data = pd.cut(x=combined_data["Age"], bins=5).value_counts().to_dict()
         actual_frequencies = {interval.left:value for interval, value in new_data.items()}
         self.assertEqual(expected_class_frequencies, actual_frequencies)
-        
+
     def test_uniform_regression_retry(self):
         # TestSampler.test_uniform_regression_retry
         results_output_path = "results/"
@@ -146,6 +146,7 @@ class TestSampler(unittest.TestCase):
         loaded_train_data = pd.read_csv(train_data)
         sampler = Sampler(task_uniform, loaded_train_data, generator)
         combined_data, sampling_method_info, score_aggregate = sampler.sample_data()
+        self.assertEqual(1, len(sampler.logs))
         
         
         

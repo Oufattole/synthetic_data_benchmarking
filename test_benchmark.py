@@ -70,11 +70,9 @@ class TestBenchmark(unittest.TestCase):
                         'Classifier Name': np.random.randint(5, size=N),
                         'SD Generator Path':np.random.randint(5, size=N)})
         metric = "c1"
-        print(result_df)
         output = benchmark.summarize_top_n(3, metric, result_df, output_dir=None)
         self.assertEqual(output["c1"].tolist(), [988,742,595])
         output = benchmark.summarize_sampling_method(metric, result_df, output_dir=None)
-        print(output)
         self.assertEqual(output["c1"].tolist(), [988,742,510])
         output = benchmark.summarize_classifier(metric, result_df, output_dir=None)
         self.assertEqual(output["c1"].tolist(), [988, 742, 510, 382, 98])
@@ -105,16 +103,30 @@ class TestBenchmark(unittest.TestCase):
         classifier="lr"
         run_num=0
         is_regression=True
-        
+        task_output_path = "tasks/"
         tasks = [task.Task(task_id="test_id", train_dataset=train_data,
                     test_dataset=test_data, target=target,
                     path_to_generator=generator_path, sampling_method_id=sampling_method_id, 
-                    pycaret_model=classifier, run_num=run_num, output_dir=None,
+                    pycaret_model=classifier, run_num=run_num, output_dir=task_output_path,
                     is_regression=is_regression)]
         # run benchmark on tasks
         result_df, failed_tasks = benchmark.benchmark(tasks, agnostic_metrics=False,
                                 output_path=results_output_path, is_regression=True)
         self.assertEqual(0, len(failed_tasks))
+    def test_regression_benchmark(self):
+        #TestBenchmark.test_regression_benchmark
+        results_output_path = "results/"
+        task_output_path = "tasks/"
+        path_to_generators = "regression_generators/"
+        tasks = task.create_tasks(train_dataset="regression_data/train.csv",
+                            test_dataset="regression_data/test.csv", target="charges",
+                            path_to_generators = path_to_generators, pycaret_models=["lr"],
+                            task_sampling_method="uniform", run_num=1, output_dir=task_output_path,
+                            is_regression=True)
+        # run benchmark on tasks
+        result_df, failed_tasks = benchmark.benchmark(tasks, agnostic_metrics=False,
+                                    output_path=results_output_path, is_regression=True)
+        self.assertEqual(len(failed_tasks), 0)
     
 
 

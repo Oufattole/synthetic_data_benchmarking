@@ -54,7 +54,7 @@ class Task_Evaluator():
             output_score = predictions["Score"]
         scores = self._get_scores(ground_truth, output_predictions, output_score)
         # make dictionary of metric name to score
-         
+        
         metric_to_score = {metric:score for metric, score in zip(all_metrics, scores)}
         # record entry
         # results_row = model_column + sample_size_column + score_column + classifier_column + performance_column
